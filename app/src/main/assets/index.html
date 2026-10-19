@@ -43,6 +43,16 @@ button{font:inherit;color:var(--p);background:var(--bg);border:1px solid #5a4a3a
 #mn{top:calc(2vh + env(safe-area-inset-top,0px));right:2vw;width:116px;min-width:0;height:min(10vh,48px);font-size:min(3.4vh,16px);padding:0}
 #ps{top:calc(2vh + env(safe-area-inset-top,0px));right:calc(2vw + 124px);width:84px;height:min(10vh,48px);font-size:min(3.4vh,16px);padding:0}
 #cm{width:88px;font-size:14px;height:min(9vh,44px);top:calc(14vh + env(safe-area-inset-top,0px));left:12px;padding:0}#hb{max-width:48vw}
+.cb{opacity:var(--bo,.9)}.cb.dim{opacity:calc(var(--bo,.9)*.35)}.ed .cb{outline:2px dashed #fff;opacity:1}
+#hb{max-width:none;overflow:visible;gap:5px}#hb button{width:56px;height:56px;padding:0;position:relative;line-height:1}#hb b{display:block;font-size:24px;font-weight:400}#hb i{position:absolute;right:3px;bottom:2px;font-style:normal;font-size:11px;color:#f0c080}
+#res,#cg{display:grid;grid-template-columns:repeat(8,72px);gap:6px;justify-content:start;margin-bottom:10px}
+.sl{width:72px;height:72px;min-height:0;padding:2px}.sl b{font-size:26px;margin-top:2px}.sl span{font-size:10px;display:block;line-height:1}.sl i{right:4px;top:2px;font-size:12px}.sl.em{opacity:.3}
+#qk{display:none;gap:6px;margin:8px 0}#qk button{width:64px;height:64px;padding:0;position:relative}#qk b{display:block;font-size:26px;font-weight:400}#qk i{position:absolute;right:4px;bottom:2px;font-style:normal;font-size:12px;color:#f0c080}#qk .on{background:var(--a)}
+#rc{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}.rcd{flex:0 0 92px;height:92px;background:#241d16;border:1px solid #5a4a3a;border-radius:8px;text-align:center;padding:6px 2px;font-size:12px}.rcd b{display:block;font-size:30px;font-weight:400}.rcd.on{border-color:#f0a070;background:#3a2a1e}.rcd.no{opacity:.45}
+#rd{margin:8px 0;font-size:15px}#mk{min-height:48px;padding:0 24px;background:var(--a)}#mk:disabled{opacity:.4}#cook{display:none}#rcw{display:none}
+#cf{top:calc(2vh + env(safe-area-inset-top,0px));right:calc(2vw + 216px);width:84px;height:min(10vh,48px);font-size:min(3.4vh,16px);padding:0}
+#ok{display:none;left:50%;top:40%;transform:translateX(-50%);z-index:30;font-size:20px;padding:12px 22px;background:var(--a)}
+#err{left:12px;bottom:70px;max-width:60vw;font-size:12px;color:#ff8a7a;background:#000a;padding:4px 6px;display:none;pointer-events:none;z-index:60}
 #mm{inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:linear-gradient(#0b0a09aa,#1b120a99);flex-direction:column;gap:10px;overflow:auto;padding:20px;touch-action:pan-y}
 #mm h1{margin:0;font-size:clamp(40px,10vw,84px);letter-spacing:.12em;font-weight:900;color:#c4572a;text-shadow:0 3px 0 #000}
 #mm p{margin:0 0 10px;opacity:.8;max-width:480px;text-align:center}
@@ -56,12 +66,12 @@ button{font:inherit;color:var(--p);background:var(--bg);border:1px solid #5a4a3a
 #fl{right:20px;bottom:calc(190px + env(safe-area-inset-bottom,0px));width:64px;height:48px}
 </style></head><body>
 <div id="st" class="ab"><div class="br"><i id="b1" style="background:#b83a2e"></i></div><div class="br"><i id="b2" style="background:#d68a2d"></i></div><div class="br"><i id="b3" style="background:#3b8fc4"></i></div><div class="br"><i id="b4" style="background:#8bb86a"></i></div></div>
-<div id="cx" class="ab"></div><div id="rot">Поверните телефон горизонтально</div><div id="clk" class="ab"></div><div id="fps" class="ab"></div>
+<div id="cx" class="ab"></div><div id="rot">Поверните телефон горизонтально</div><div id="clk" class="ab"></div><div id="fps" class="ab"></div><div id="err" class="ab"></div>
 <div id="mm" class="ab"><h1>RUST LITE</h1><p>Одиночное выживание: добывайте ресурсы, стройте базу, охотьтесь и переживите ночь.</p>
 <div id="mb" style="display:contents"><button class="pr" id="play">Играть</button><button id="nw" style="display:none">Новая игра</button><button id="opt">Настройки</button><button id="how">Как играть</button></div>
 <div class="set" id="so">
 <label>Графика<select id="q"><option value="0">Низкая</option><option value="1">Средняя</option><option value="2">Высокая</option></select></label>
-<label>Кино-шейдер (свет, зерно, виньетка)<input type="checkbox" id="fx"></label>
+<label>Шейдеры<select id="fx"><option value="0">Выкл</option><option value="1">Лёгкие</option><option value="2">Полные (свет, тени)</option></select></label>
 <label>Тени<input type="checkbox" id="sh"></label>
 <label>Трава<input type="checkbox" id="gr"></label>
 <label>Дальность видимости<input type="range" id="vd" min="60" max="170"></label>
@@ -72,13 +82,19 @@ button{font:inherit;color:var(--p);background:var(--bg);border:1px solid #5a4a3a
 <label>Ночь<select id="nt"><option value="0">Обычная</option><option value="1">Короткая</option><option value="2">Без ночи</option></select></label>
 <label>Сложность<select id="df"><option value="0.6">Лёгкая</option><option value="1">Нормальная</option><option value="1.5">Хардкор</option></select></label>
 <label>Показывать FPS<input type="checkbox" id="sf"></label>
+<label>Авто-качество (снижает разрешение при лагах)<input type="checkbox" id="au"></label>
+<label>Яркость<input type="range" id="br" min="70" max="140"></label>
+<label>Размер кнопок<input type="range" id="bs" min="60" max="150"></label>
+<label>Прозрачность кнопок<input type="range" id="bo" min="30" max="100"></label>
+<button id="ed">Расположить кнопки</button><button id="rl">Сбросить кнопки</button>
 <button id="bk">Назад</button></div>
 <div class="set" id="sh2"><p>Левый стик — ходить, до края — бег (тратит выносливость). Правая часть экрана — обзор. «Удар» бьёт, добывает, стреляет и строит. «Крафт» — рецепты и жарка мяса у костра. «Фонарь» включает свет ночью. Волки опаснее ночью.</p><button id="bk2">Назад</button></div></div><div id="ms" class="ab"></div><div id="vg" class="ab"></div><div id="js" class="ab"></div>
 <div id="hb" class="ab"></div>
-<button id="hit" class="ab">Удар</button><button id="jmp" class="ab">Прыжок</button><button id="eat" class="ab">Еда</button><button id="mn" class="ab">Инвентарь</button><button id="ps" class="ab">Меню</button><button id="fl" class="ab">Фонарь</button><button id="cm" class="ab">Вид</button><button id="us" class="ab">Действие</button>
-<div id="pn" class="ab"><h2>Инвентарь</h2><div id="res"></div>
-<div class="row"><button id="cook">Пожарить мясо у костра</button><button id="cl">Закрыть</button></div><div id="cs" style="display:none"><h2>Сундук</h2><div id="cg"></div><div class="row"><button id="cd">Положить ресурсы</button></div></div><h2>Крафт</h2><div id="rc"></div></div>
+<button id="hit" class="ab">Удар</button><button id="jmp" class="ab">Прыжок</button><button id="eat" class="ab">Еда</button><button id="mn" class="ab">Инвентарь</button><button id="ps" class="ab">Меню</button><button id="fl" class="ab">Фонарь</button><button id="cm" class="ab">Вид</button><button id="us" class="ab">Действие</button><button id="fire" class="ab">Огонь</button><button id="pl" class="ab">Строить</button><button id="run" class="ab">Бег</button><button id="cr" class="ab">Присесть</button><button id="ok" class="ab">Готово</button><button id="cf" class="ab">Крафт</button><button id="dm" class="ab">Ломать</button>
+<div id="pn" class="ab"><h2 id="hI">Инвентарь</h2><div id="res"></div><div id="qk"></div>
+<div class="row"><button id="cook">Пожарить мясо у костра</button><button id="cl">Закрыть</button></div><div id="cs" style="display:none"><h2>Сундук</h2><div id="cg"></div><div class="row"><button id="cd">Положить ресурсы</button></div></div><h2 id="hC">Крафт</h2><div id="rcw"><div id="rc"></div><div id="rd"></div><button id="mk">Создать</button></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>addEventListener('error',function(ev){var e=document.getElementById('err');if(e){e.style.display='block';e.textContent='Ошибка: '+ev.message+' (стр. '+ev.lineno+')'}});if(typeof THREE=='undefined'){var e0=document.getElementById('err');e0.style.display='block';e0.textContent='Не загрузилась библиотека three.js — проверьте интернет или блокировщик'}</script>
 <script>
 var __defProp = Object.defineProperty;
 var __getOwnPropSymbols = Object.getOwnPropertySymbols;
@@ -107,13 +123,13 @@ const sun = new T.DirectionalLight(16773328, 1), amb = new T.HemisphereLight(125
 S.add(sun, amb);
 addEventListener("resize", () => applyS());
 const WL = -1.4, M = (c) => new T.MeshLambertMaterial({ color: c });
-const ST = { q: 1, fx: 1, sh: 1, gr: 1, vd: 120, fv: 95, se: 6, vo: 60, dl: 600, nt: 1, df: 1, sf: 0 };
+const ST = { q: 1, fx: 1, sh: 1, gr: 1, vd: 120, fv: 95, br: 100, au: 1, bs: 100, bo: 90, se: 6, vo: 60, dl: 600, nt: 1, df: 1, sf: 0 };
 try {
   Object.assign(ST, JSON.parse(localStorage.ST));
 } catch (e) {
 }
 if (ST.fv < 85) ST.fv = 95;
-let spn = null, curC = null, act = 0, actT = 0, rl2 = 0, isRun = 0, tp = 0, started = 0, lsv = 0, oid = 0, gone = [], wTarget = 0, playing = false, dayL = 1, mv = 0, bobT = 0, lastS = 0, sta = 100, flOn = 0, dmg = 0, fr = 0, ft = 0, AC, NB, gW;
+let cr = 0, crs = 0, runT = 0, resS = 1, fxOff = 0, lowN = 0, layReady = 0, spn = null, curC = null, act = 0, actT = 0, rl2 = 0, isRun = 0, tp = 0, started = 0, lsv = 0, oid = 0, gone = [], wTarget = 0, playing = false, dayL = 1, mv = 0, bobT = 0, lastS = 0, sta = 100, flOn = 0, dmg = 0, fr = 0, ft = 0, AC, NB, gW;
 sun.shadow.camera.left = sun.shadow.camera.bottom = -40;
 sun.shadow.camera.right = sun.shadow.camera.top = 40;
 sun.shadow.camera.far = 300;
@@ -185,7 +201,7 @@ const TL = TX(256, (u, v) => {
   return [105 * l, 155 * l, 80 * l];
 }, [3, 3]);
 const TR = TX(256, (u, v) => {
-  const n = fb(u * 4, v * 4, 5), r = Math.abs(fb(u * 6 + 3, v * 6, 4) - 0.5), cr = r < 0.025 ? 0.35 : 1, li = fb(u * 9, v * 9, 3) > 0.6 ? 1 : 0, l = (0.4 + n * 0.9 + px8(u, v) * 0.12) * cr;
+  const n = fb(u * 4, v * 4, 5), r = Math.abs(fb(u * 6 + 3, v * 6, 4) - 0.5), cr2 = r < 0.025 ? 0.35 : 1, li = fb(u * 9, v * 9, 3) > 0.6 ? 1 : 0, l = (0.4 + n * 0.9 + px8(u, v) * 0.12) * cr2;
   return [135 * l * (1 - li * 0.35), 135 * l + li * 20 * l, 125 * l * (1 - li * 0.45)];
 }, [1, 1]);
 const TM = TX(256, (u, v) => {
@@ -374,7 +390,7 @@ function snd(fr2, du, vol, ty) {
   s.start(0, Math.random());
 }
 function applyS() {
-  const pr = Math.min(devicePixelRatio, [1, 1.25, 1.75][ST.q]);
+  const pr = Math.min(devicePixelRatio, [1, 1.25, 1.75][ST.q], Math.sqrt([6e5, 1e6, 18e5][ST.q] / (innerWidth * innerHeight))) * resS;
   R.setPixelRatio(pr);
   R.setSize(innerWidth, innerHeight);
   RT.setSize(innerWidth * pr, innerHeight * pr);
@@ -391,7 +407,9 @@ function applyS() {
     sun.shadow.map = null;
   }
   gI.visible = !!ST.gr;
-  PM.uniforms.fx.value = ST.fx ? 1 : 0;
+  PM.uniforms.fx.value = [0, 0.5, 1][ST.fx | 0];
+  document.documentElement.style.setProperty("--bs", ST.bs / 100);
+  document.documentElement.style.setProperty("--bo", ST.bo / 100);
   S.traverse((o) => {
     if (o.material) o.material.needsUpdate = true;
   });
@@ -399,6 +417,7 @@ function applyS() {
     localStorage.ST = JSON.stringify(ST);
   } catch (e) {
   }
+  if (layReady) applyLayout();
 }
 function h(x, z) {
   const f = Math.min(1, Math.max(0, (Math.hypot(x, z) - 14) / 30));
@@ -427,14 +446,14 @@ function h(x, z) {
   S.add(w);
 }
 const N = { rock: "\u041A\u0430\u043C\u0435\u043D\u044C", hatchet: "\u0422\u043E\u043F\u043E\u0440", pickaxe: "\u041A\u0438\u0440\u043A\u0430", spear: "\u041A\u043E\u043F\u044C\u0451", bow: "\u041B\u0443\u043A", foundation: "\u0424\u0443\u043D\u0434\u0430\u043C\u0435\u043D\u0442", wall: "\u0421\u0442\u0435\u043D\u0430", mwall: "\u041C\u0435\u0442\u0430\u043B. \u0441\u0442\u0435\u043D\u0430", campfire: "\u041A\u043E\u0441\u0442\u0451\u0440" };
-Object.assign(N, { furnace: "\u041F\u0435\u0447\u044C", chest: "\u0421\u0443\u043D\u0434\u0443\u043A", bed: "\u041A\u0440\u043E\u0432\u0430\u0442\u044C", doorframe: "\u0421\u0442\u0435\u043D\u0430 \u0441 \u043F\u0440\u043E\u0451\u043C\u043E\u043C", door: "\u0414\u0432\u0435\u0440\u044C", roof: "\u041A\u0440\u044B\u0448\u0430", mhatchet: "\u041C\u0435\u0442\u0430\u043B. \u0442\u043E\u043F\u043E\u0440", mpick: "\u041C\u0435\u0442\u0430\u043B. \u043A\u0438\u0440\u043A\u0430" });
-const PL = { foundation: 1, wall: 1, mwall: 1, campfire: 1, chest: 1, bed: 1, furnace: 1, doorframe: 1, door: 1, roof: 1 }, HK = Object.keys(N);
-const base = { rock: 1, hatchet: 0, pickaxe: 0, spear: 0, bow: 0, arrow: 0, wood: 0, stone: 0, metal: 0, meat: 0, cooked: 0, foundation: 0, wall: 0, mwall: 0, campfire: 0, hide: 0, jacket: 0, ore: 0, chest: 0, bed: 0, furnace: 0, doorframe: 0, door: 0, roof: 0, mhatchet: 0, mpick: 0, helmet: 0, bandage: 0 };
+Object.assign(N, { swall: "\u041A\u0430\u043C\u0435\u043D\u043D\u0430\u044F \u0441\u0442\u0435\u043D\u0430", furnace: "\u041F\u0435\u0447\u044C", chest: "\u0421\u0443\u043D\u0434\u0443\u043A", bed: "\u041A\u0440\u043E\u0432\u0430\u0442\u044C", doorframe: "\u0421\u0442\u0435\u043D\u0430 \u0441 \u043F\u0440\u043E\u0451\u043C\u043E\u043C", door: "\u0414\u0432\u0435\u0440\u044C", roof: "\u041A\u0440\u044B\u0448\u0430", mhatchet: "\u041C\u0435\u0442\u0430\u043B. \u0442\u043E\u043F\u043E\u0440", mpick: "\u041C\u0435\u0442\u0430\u043B. \u043A\u0438\u0440\u043A\u0430" });
+const PL = { foundation: 1, wall: 1, mwall: 1, campfire: 1, chest: 1, bed: 1, furnace: 1, swall: 1, doorframe: 1, door: 1, roof: 1 }, HK = Object.keys(N);
+const base = { rock: 1, hatchet: 0, pickaxe: 0, spear: 0, bow: 0, arrow: 0, wood: 0, stone: 0, metal: 0, meat: 0, cooked: 0, foundation: 0, wall: 0, mwall: 0, campfire: 0, hide: 0, jacket: 0, ore: 0, chest: 0, bed: 0, furnace: 0, doorframe: 0, door: 0, roof: 0, swall: 0, mhatchet: 0, mpick: 0, helmet: 0, bandage: 0 };
 const inv = __spreadValues({}, base);
 let sel = "rock", hp = 100, fd = 100, wt = 100, dead = false, dayT = 0.3, cd = 0, swing = 0, holdHit = false;
 const P = new T.Vector3(0, h(0, 0), 0);
 let vy = 0, yaw = 0, pitch = 0;
-const RC = [["hatchet", "\u0422\u043E\u043F\u043E\u0440", { wood: 30, stone: 15 }, 1], ["pickaxe", "\u041A\u0438\u0440\u043A\u0430", { wood: 30, stone: 20 }, 1], ["spear", "\u041A\u043E\u043F\u044C\u0451", { wood: 40, stone: 10 }, 1], ["bow", "\u041B\u0443\u043A", { wood: 50 }, 1], ["jacket", "\u041A\u0443\u0440\u0442\u043A\u0430 \u0438\u0437 \u0448\u043A\u0443\u0440", { hide: 5 }, 1], ["arrow", "\u0421\u0442\u0440\u0435\u043B\u044B \xD75", { wood: 10, stone: 5 }, 5], ["campfire", "\u041A\u043E\u0441\u0442\u0451\u0440", { wood: 40 }, 1], ["furnace", "\u041F\u0435\u0447\u044C", { stone: 60, wood: 20 }, 1], ["chest", "\u0421\u0443\u043D\u0434\u0443\u043A", { wood: 80 }, 1], ["bed", "\u041A\u0440\u043E\u0432\u0430\u0442\u044C", { wood: 60, hide: 6 }, 1], ["doorframe", "\u0421\u0442\u0435\u043D\u0430 \u0441 \u043F\u0440\u043E\u0451\u043C\u043E\u043C", { wood: 40 }, 1], ["door", "\u0414\u0432\u0435\u0440\u044C", { wood: 30 }, 1], ["roof", "\u041A\u0440\u044B\u0448\u0430", { wood: 50 }, 1], ["mhatchet", "\u041C\u0435\u0442\u0430\u043B. \u0442\u043E\u043F\u043E\u0440", { metal: 20, wood: 30 }, 1], ["mpick", "\u041C\u0435\u0442\u0430\u043B. \u043A\u0438\u0440\u043A\u0430", { metal: 25, wood: 30 }, 1], ["helmet", "\u0428\u043B\u0435\u043C", { metal: 12, hide: 3 }, 1], ["bandage", "\u0411\u0438\u043D\u0442 \xD73", { hide: 2 }, 3], ["foundation", "\u0424\u0443\u043D\u0434\u0430\u043C\u0435\u043D\u0442", { wood: 60 }, 1], ["wall", "\u0414\u0435\u0440\u0435\u0432\u044F\u043D\u043D\u0430\u044F \u0441\u0442\u0435\u043D\u0430", { wood: 30 }, 1], ["mwall", "\u041C\u0435\u0442\u0430\u043B. \u0441\u0442\u0435\u043D\u0430", { metal: 15, wood: 10 }, 1]];
+const RC = [["hatchet", "\u0422\u043E\u043F\u043E\u0440", { wood: 30, stone: 15 }, 1], ["pickaxe", "\u041A\u0438\u0440\u043A\u0430", { wood: 30, stone: 20 }, 1], ["spear", "\u041A\u043E\u043F\u044C\u0451", { wood: 40, stone: 10 }, 1], ["bow", "\u041B\u0443\u043A", { wood: 50 }, 1], ["jacket", "\u041A\u0443\u0440\u0442\u043A\u0430 \u0438\u0437 \u0448\u043A\u0443\u0440", { hide: 5 }, 1], ["arrow", "\u0421\u0442\u0440\u0435\u043B\u044B \xD75", { wood: 10, stone: 5 }, 5], ["campfire", "\u041A\u043E\u0441\u0442\u0451\u0440", { wood: 40 }, 1], ["furnace", "\u041F\u0435\u0447\u044C", { stone: 60, wood: 20 }, 1], ["chest", "\u0421\u0443\u043D\u0434\u0443\u043A", { wood: 80 }, 1], ["bed", "\u041A\u0440\u043E\u0432\u0430\u0442\u044C", { wood: 60, hide: 6 }, 1], ["doorframe", "\u0421\u0442\u0435\u043D\u0430 \u0441 \u043F\u0440\u043E\u0451\u043C\u043E\u043C", { wood: 40 }, 1], ["door", "\u0414\u0432\u0435\u0440\u044C", { wood: 30 }, 1], ["roof", "\u041A\u0440\u044B\u0448\u0430", { wood: 50 }, 1], ["swall", "\u041A\u0430\u043C\u0435\u043D\u043D\u0430\u044F \u0441\u0442\u0435\u043D\u0430", { stone: 50, wood: 10 }, 1], ["mhatchet", "\u041C\u0435\u0442\u0430\u043B. \u0442\u043E\u043F\u043E\u0440", { metal: 20, wood: 30 }, 1], ["mpick", "\u041C\u0435\u0442\u0430\u043B. \u043A\u0438\u0440\u043A\u0430", { metal: 25, wood: 30 }, 1], ["helmet", "\u0428\u043B\u0435\u043C", { metal: 12, hide: 3 }, 1], ["bandage", "\u0411\u0438\u043D\u0442 \xD73", { hide: 2 }, 3], ["foundation", "\u0424\u0443\u043D\u0434\u0430\u043C\u0435\u043D\u0442", { wood: 60 }, 1], ["wall", "\u0414\u0435\u0440\u0435\u0432\u044F\u043D\u043D\u0430\u044F \u0441\u0442\u0435\u043D\u0430", { wood: 30 }, 1], ["mwall", "\u041C\u0435\u0442\u0430\u043B. \u0441\u0442\u0435\u043D\u0430", { metal: 15, wood: 10 }, 1]];
 const CN = { hide: "\u0448\u043A\u0443\u0440\u0430", wood: "\u0434\u0435\u0440\u0435\u0432\u043E", stone: "\u043A\u0430\u043C\u0435\u043D\u044C", metal: "\u043C\u0435\u0442\u0430\u043B\u043B" };
 const obs = [], bl = [], fires = [], an = [];
 const cyl = new T.CylinderGeometry(0.28, 0.5, 4.4, 10, 3), cone = (() => {
@@ -632,7 +651,10 @@ function gh(x, z) {
 }
 function plan() {
   const ax = P.x - Math.sin(yaw) * 4, az = P.z - Math.cos(yaw) * 4;
-  if (["campfire", "chest", "bed", "furnace"].includes(sel)) return { x: ax, z: az, y: gh(ax, az), o: sel == "campfire" ? 0 : yaw };
+  if (["campfire", "chest", "bed", "furnace"].includes(sel)) {
+    const fx2 = P.x - Math.sin(yaw) * 2.3, fz2 = P.z - Math.cos(yaw) * 2.3;
+    return { x: fx2, z: fz2, y: gh(fx2, fz2), o: sel == "campfire" ? 0 : yaw };
+  }
   const cx = Math.round(ax / 4) * 4, cz2 = Math.round(az / 4) * 4;
   if (sel == "foundation" || sel == "roof") {
     let t = h(cx, cz2);
@@ -651,7 +673,7 @@ function plan() {
   const e = o ? [0, 1.9] : [1.9, 0];
   return { x: ex, z: ez, y: Math.max(gh(ex, ez), gh(ex + e[0], ez + e[1]), gh(ex - e[0], ez - e[1])), o };
 }
-function valid(p) {
+function valid1(p) {
   if (p.y < WL + 0.1) return false;
   const w = sel == "wall" || sel == "mwall" || sel == "doorframe";
   if (sel == "door") return bl.some((b) => b.t == "d" && !b.door && b.x == p.x && b.z == p.z && b.o == p.o);
@@ -729,12 +751,21 @@ function place(p0) {
     m.position.set(p.x, p.y + 0.1, p.z);
     b = { t: "r", x: p.x, z: p.z, o: 0 };
   } else {
-    m = new T.Mesh(new T.BoxGeometry(4, 3, 0.3), sel == "wall" ? SM(TP, 16777215, 0.8) : SM(TS, 16777215, 0.6));
+    m = new T.Mesh(new T.BoxGeometry(4, 3, 0.3), sel == "wall" ? SM(TP, 16777215, 0.8) : sel == "swall" ? SM(TSW, 16777215, 2) : SM(TS, 16777215, 0.6));
     m.rotation.y = p.o ? Math.PI / 2 : 0;
     m.position.set(p.x, p.y + 1.5, p.z);
     b = { t: "w", x: p.x, z: p.z, o: p.o, y0: p.y, top: p.y + 3 };
   }
+  {
+    const ex = sel == "wall" || sel == "swall" || sel == "mwall" || sel == "doorframe" ? bl.find((q) => q.t == "w" && q.x == p.x && q.z == p.z && q.o == p.o) : null;
+    if (ex) {
+      S.remove(ex.m);
+      bl.splice(bl.indexOf(ex), 1);
+      if (!p0) inv[ex.kd]++;
+    }
+  }
   b.kd = sel;
+  b.m = m;
   b.py = p.y;
   cs(m);
   S.add(m);
@@ -783,8 +814,11 @@ function setHeld() {
     q.scale.set(0.1, 0.08, 0.09);
     held.add(q);
   }
+  const bw = k == "bow";
   HM.tool.clear();
-  held.children.forEach((c) => HM.tool.add(c.clone()));
+  HM.toolL.clear();
+  held.children.forEach((c) => (bw ? HM.toolL : HM.tool).add(c.clone()));
+  HM.tool.rotation.set(-(GR[k] || 0), Math.PI, 0);
 }
 let msT;
 function msg(t) {
@@ -795,11 +829,16 @@ function msg(t) {
   msT = setTimeout(() => e.style.opacity = 0, 1800);
 }
 const can = (r) => Object.entries(r[2]).every(([k, v]) => inv[k] >= v);
-function ui() {
+function ui0() {
   const ks = HK.filter((k) => inv[k] > 0);
   if (!ks.includes(sel)) sel = "rock";
   $("hb").innerHTML = ks.map((k) => `<button data-k="${k}" class="${k == sel ? "on" : ""}">${N[k]}${PL[k] ? " \xD7" + inv[k] : ""}</button>`).join("");
-  $("hit").textContent = PL[sel] ? "\u0421\u0442\u0440\u043E\u0438\u0442\u044C" : sel == "bow" ? "\u0412\u044B\u0441\u0442\u0440\u0435\u043B" : "\u0423\u0434\u0430\u0440";
+  {
+    const rg2 = sel == "bow" || sel == "spear";
+    $("hit").classList.toggle("dim", !!PL[sel] || rg2);
+    $("fire").classList.toggle("dim", !rg2);
+    $("pl").classList.toggle("dim", !PL[sel]);
+  }
   setHeld();
   $("res").innerHTML = Object.keys(inv).filter((k) => inv[k] > 0).map((k) => `<div class="sl${k == sel ? " on" : ""}" data-k="${k}"><b>${IC[k]}</b><span>${N[k] || NM2[k]}</span><i>${inv[k] > 1 || !HK.includes(k) ? "\xD7" + inv[k] : ""}</i></div>`).join("");
   $("rc").innerHTML = RC.map((r, i) => `<button data-i="${i}" class="${can(r) ? "" : "no"}">${r[1]}<small>${Object.entries(r[2]).map(([k, v]) => v + " " + CN[k]).join(", ")}</small></button>`).join("");
@@ -884,15 +923,21 @@ function die() {
 }
 const WOOD = { rock: 4, hatchet: 14, pickaxe: 5, spear: 3, mhatchet: 24, mpick: 8 }, STONE = { rock: 4, hatchet: 5, pickaxe: 14, spear: 2, mhatchet: 8, mpick: 24 }, DMG = { rock: 8, hatchet: 20, pickaxe: 18, spear: 35, bow: 45, mhatchet: 32, mpick: 28 };
 const eye = () => new T.Vector3(P.x, P.y + 1.6, P.z), fw = () => new T.Vector3(-Math.sin(yaw) * Math.cos(pitch), Math.sin(pitch), -Math.cos(yaw) * Math.cos(pitch));
-function hit(n0, fire) {
+function hit(src, fire) {
   const now = performance.now();
   if (dead || now < cd) return;
-  if (!fire && (sel == "bow" || sel == "spear")) {
-    if (act) return;
-    if (sel == "bow" && inv.arrow < 1) return msg("\u041D\u0435\u0442 \u0441\u0442\u0440\u0435\u043B");
-    act = sel;
-    actT = 0;
-    return;
+  const rg2 = sel == "bow" || sel == "spear";
+  if (!fire) {
+    if (PL[sel]) {
+      if (src != "p") return msg("\u0414\u043B\u044F \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0438 \u043D\u0430\u0436\u043C\u0438\u0442\u0435 \xAB\u0421\u0442\u0440\u043E\u0438\u0442\u044C\xBB");
+    } else if (rg2) {
+      if (src != "f") return msg("\u0421\u0442\u0440\u0435\u043B\u044F\u0439\u0442\u0435 \u043A\u043D\u043E\u043F\u043A\u043E\u0439 \xAB\u041E\u0433\u043E\u043D\u044C\xBB");
+      if (act) return;
+      if (sel == "bow" && inv.arrow < 1) return msg("\u041D\u0435\u0442 \u0441\u0442\u0440\u0435\u043B");
+      act = sel;
+      actT = 0;
+      return;
+    } else if (src == "f") return msg("\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043B\u0443\u043A \u0438\u043B\u0438 \u043A\u043E\u043F\u044C\u0451");
   }
   cd = now + 450;
   swing = 1;
@@ -1044,7 +1089,7 @@ hb.onpointerup = hb.onpointerleave = () => holdHit = false;
 $("jmp").onpointerdown = () => {
   if (P.y <= gh(P.x, P.z) + 0.05) {
     vy = 6.5;
-    sta = Math.max(0, sta - 8);
+    sta = Math.max(0, sta - 4);
   }
 };
 addEventListener("keydown", (e) => {
@@ -1053,21 +1098,22 @@ addEventListener("keydown", (e) => {
   if (e.code == "KeyE") eat();
   if (e.code == "KeyV") camMode();
   if (e.code == "KeyR") useIt();
+  if (e.code == "KeyZ" || e.code == "ControlLeft") $("cr").onclick();
+  if (e.code == "KeyX") hit("f");
+  if (e.code == "KeyB") hit("p");
+  if (e.code == "KeyT") demolish();
   if (e.code == "KeyF") flOn ^= 1;
   if (e.code == "KeyC") $("mn").onclick();
   const n = +e.key;
-  if (n > 0) {
-    const ks = HK.filter((k) => inv[k] > 0);
-    if (ks[n - 1]) {
-      sel = ks[n - 1];
-      ui();
-    }
+  if (n > 0 && n <= 6) {
+    qs = n - 1;
+    ui();
   }
 });
 addEventListener("keyup", (e) => keys[e.code] = 0);
 R.domElement.onclick = () => {
   if ("ontouchstart" in window) return;
-  document.pointerLockElement ? hit() : R.domElement.requestPointerLock();
+  document.pointerLockElement ? hit(PL[sel] ? "p" : sel == "bow" || sel == "spear" ? "f" : "m") : R.domElement.requestPointerLock();
 };
 addEventListener("mousemove", (e) => {
   if (document.pointerLockElement) {
@@ -1082,11 +1128,12 @@ function step(dt) {
     mx /= l;
     mz /= l;
   }
-  const gy = gh(P.x, P.z), run = (keys.ShiftLeft || l > 0.97) && sta > 3 && l > 0.1, sp = (run ? 7.5 : 5) * (gy < WL ? 0.5 : 1);
-  if (run) sta -= 20 * dt;
-  else sta = Math.min(100, sta + 14 * dt);
+  const gy = gh(P.x, P.z), run = (keys.ShiftLeft || runT || l > 0.97) && sta > 3 && l > 0.1 && crs < 0.5, sp = (run ? 7.5 : 5) * (gy < WL ? 0.5 : 1) * (1 - crs * 0.5);
+  if (run) sta -= 5 * dt;
+  else sta = Math.min(100, sta + 16 * dt);
   mv = l;
   isRun = run;
+  crs += (cr - crs) * Math.min(1, dt * 8);
   if (l > 0.1 && P.y <= gy + 0.05) {
     bobT += dt * sp * 1.7;
     const k = Math.floor(bobT / 3.14);
@@ -1169,10 +1216,10 @@ function world(dt) {
       sp = 6.2;
       if (d < 1.9) {
         sp = 0;
-        if (now > a2.cd) {
-          a2.cd = now + 1e3;
+        if (now > a2.cd && !wallBetween(p.x, p.z, P.x, P.z)) {
+          a2.cd = now + 1400;
           a2.at = 1;
-          hurt(12 * ST.df);
+          hurt(5 * ST.df);
         }
       }
     } else if (!a2.w && d < 16) {
@@ -1193,10 +1240,13 @@ function world(dt) {
       sp = a2.s;
     }
     const nx = p.x + vx * sp * dt, nz = p.z + vz * sp * dt;
-    if (h(nx, nz) > WL + 0.15 && Math.abs(nx) < 195 && Math.abs(nz) < 195) {
+    const okf = (x, z) => h(x, z) > WL + 0.15 && Math.abs(x) < 195 && Math.abs(z) < 195 && !solid(x, z, 0.5, true);
+    if (okf(nx, nz)) {
       p.x = nx;
       p.z = nz;
-    } else {
+    } else if (okf(nx, p.z)) p.x = nx;
+    else if (okf(p.x, nz)) p.z = nz;
+    else {
       a2.vx *= -1;
       a2.vz *= -1;
     }
@@ -1245,7 +1295,7 @@ function world(dt) {
   SKY.material.uniforms.dl.value = dayL;
   vmU(dt);
   if (PL[sel]) {
-    const p = plan(), wl = sel == "wall" || sel == "mwall" || sel == "doorframe" || sel == "door";
+    const p = plan(), wl = sel == "wall" || sel == "swall" || sel == "mwall" || sel == "doorframe" || sel == "door";
     gh0.visible = true;
     gh0.geometry = GG[GK[sel] || sel];
     gh0.rotation.y = wl ? p.o ? Math.PI / 2 : 0 : ["chest", "bed", "furnace"].includes(sel) ? p.o : 0;
@@ -1260,7 +1310,7 @@ function world(dt) {
   const U = PM.uniforms;
   U.dm.value = dmg;
   U.tm.value = now % 1e3 / 1e3;
-  U.ex.value = 1.3 + (1 - dayL) * 0.45;
+  U.ex.value = (1.3 + (1 - dayL) * 0.45) * ST.br / 100;
   WT.offset.set(now * 1e-5, now * 7e-6);
   FL.intensity = flOn ? 2 : 0;
   $("fl").style.background = flOn ? "#c4572a" : "";
@@ -1274,7 +1324,8 @@ function world(dt) {
   worldU(dt, now);
   fr++;
   if (now - ft > 1e3) {
-    $("fps").textContent = ST.sf ? fr + " FPS" : "";
+    $("fps").textContent = ST.sf ? fr + " FPS" + (resS < 1 ? " \xD7" + resS.toFixed(2) : "") : "";
+    adapt(fr);
     fr = 0;
     ft = now;
   }
@@ -1356,9 +1407,10 @@ const HM = (() => {
     mp(bx, HR, [0.11, 0.07, 0.24], [0, -0.48, 0.06], kn);
     return { hp: hp2, kn };
   };
-  const R2 = arm(1), L2 = arm(-1), tool = mk(R2.el, [0, -0.32, 0]);
+  const R2 = arm(1), L2 = arm(-1), tool = mk(R2.el, [0, -0.32, 0]), toolL = mk(L2.el, [0, -0.32, 0]);
   tool.rotation.y = Math.PI;
-  return { pel, ch, nk, hd, L: L2, R: R2, tool, lL: leg(-1), lR: leg(1) };
+  toolL.rotation.y = Math.PI;
+  return { pel, ch, nk, hd, L: L2, R: R2, tool, toolL, lL: leg(-1), lR: leg(1) };
 })();
 const fpG = new T.PlaneGeometry(0.13, 0.3), fpM = new T.MeshBasicMaterial({ color: 1840140, transparent: true, opacity: 0.35, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }), fp = [];
 let fpi = 0;
@@ -1501,8 +1553,8 @@ GG.bed = new T.BoxGeometry(1, 0.5, 2);
 GG.furnace = new T.BoxGeometry(0.9, 1.1, 0.9);
 GG.door = new T.BoxGeometry(1.15, 2.15, 0.08);
 GG.roof = new T.BoxGeometry(4, 0.25, 4);
-const GK = { mwall: "wall", doorframe: "wall" }, GY = { foundation: -0.75, campfire: 0.4, chest: 0.35, bed: 0.25, furnace: 0.55, roof: 0.1, door: 1.1, wall: 1.5, mwall: 1.5, doorframe: 1.5 };
-Object.assign(IC, { ore: "\u{1F7E4}", chest: "\u{1F9F0}", bed: "\u{1F6CF}\uFE0F", furnace: "\u{1F3ED}", doorframe: "\u{1F6AA}", door: "\u{1F6AA}", roof: "\u{1F3E0}", mhatchet: "\u{1FA93}", mpick: "\u26CF\uFE0F", helmet: "\u26D1\uFE0F", bandage: "\u{1FA79}" });
+const GK = { swall: "wall", mwall: "wall", doorframe: "wall" }, GY = { foundation: -0.75, campfire: 0.4, chest: 0.35, bed: 0.25, furnace: 0.55, roof: 0.1, door: 1.1, wall: 1.5, mwall: 1.5, swall: 1.5, doorframe: 1.5 };
+Object.assign(IC, { swall: "\u{1FAA8}", ore: "\u{1F7E4}", chest: "\u{1F9F0}", bed: "\u{1F6CF}\uFE0F", furnace: "\u{1F3ED}", doorframe: "\u{1F6AA}", door: "\u{1F6AA}", roof: "\u{1F3E0}", mhatchet: "\u{1FA93}", mpick: "\u26CF\uFE0F", helmet: "\u26D1\uFE0F", bandage: "\u{1FA79}" });
 Object.assign(NM2, { ore: "\u0420\u0443\u0434\u0430", helmet: "\u0428\u043B\u0435\u043C", bandage: "\u0411\u0438\u043D\u0442" });
 const FLT = (() => {
   const c = document.createElement("canvas");
@@ -1624,8 +1676,7 @@ function useIt() {
   else if (b.k == "chest") {
     curC = b;
     b.lid.rotation.x = -1.1;
-    $("pn").style.display = "block";
-    $("cs").style.display = "block";
+    openP("chest");
     renderChest();
     ui();
   } else if (b.k == "bed") {
@@ -1703,6 +1754,194 @@ function worldU(dt, now) {
 }
 $("us").onclick = useIt;
 man.scale.setScalar(0.88);
+const qk = ["rock", null, null, null, null, null], GR = { hatchet: 1, mhatchet: 1, pickaxe: 1, mpick: 1, spear: 1.2 }, RK = { wall: 1, swall: 2, mwall: 3 };
+let qs = 0, rsel = 0, pmode = "";
+const TSW = TX(256, (u, v) => {
+  const N2 = 14, x = u * N2, y = v * N2, ix = Math.floor(x), iy = Math.floor(y), m2 = (n) => (n % N2 + N2) % N2;
+  let d1 = 9, d2 = 9, id = 0;
+  for (let j = -1; j <= 1; j++) for (let i = -1; i <= 1; i++) {
+    const cx = ix + i, cy = iy + j, px = cx + hs(m2(cx), m2(cy)), py = cy + hs(m2(cy) + 7, m2(cx) + 3), d = Math.hypot(x - px, y - py);
+    if (d < d1) {
+      d2 = d1;
+      d1 = d;
+      id = hs(m2(cx) + 11, m2(cy) + 5);
+    } else if (d < d2) d2 = d;
+  }
+  const e = Math.min(1, (d2 - d1) * 3.2), l = (0.55 + id * 0.55) * (0.5 + 0.5 * e) * (0.85 + px8(u, v) * 0.3);
+  return [150 * l, 145 * l, 135 * l];
+}, [2, 1.5]);
+function syncQ() {
+  for (let i = 0; i < 6; i++) if (qk[i] && !(inv[qk[i]] > 0)) qk[i] = null;
+  for (const k of HK) if (k != "rock" && inv[k] > 0 && !qk.includes(k)) {
+    const i = qk.indexOf(null);
+    if (i >= 0) qk[i] = k;
+  }
+  if (!qk.some(Boolean)) qk[0] = "rock";
+  sel = qk[qs] || "rock";
+}
+function qHTML() {
+  return qk.map((k, i) => `<button data-q="${i}" class="${i == qs ? "on" : ""}"><b>${k ? IC[k] : ""}</b>${k && (PL[k] || inv[k] > 1) ? "<i>\xD7" + inv[k] + "</i>" : ""}</button>`).join("");
+}
+function resHTML() {
+  const c = Object.keys(inv).filter((k) => inv[k] > 0).map((k) => `<div class="sl${qk.includes(k) ? " on" : ""}" data-k="${k}"><b>${IC[k] || "\u{1F4E6}"}</b><span>${N[k] || NM2[k] || k}</span>${inv[k] > 1 || !HK.includes(k) ? "<i>\xD7" + inv[k] + "</i>" : ""}</div>`);
+  while (c.length < 24 || c.length % 8) c.push('<div class="sl em"></div>');
+  return c.join("");
+}
+function renderCraft() {
+  $("rc").innerHTML = RC.map((r2, i) => `<div class="rcd${i == rsel ? " on" : ""}${can(r2) ? "" : " no"}" data-i="${i}"><b>${IC[r2[0]] || "\u{1F527}"}</b><span>${r2[1]}</span></div>`).join("");
+  const r = RC[rsel];
+  $("rd").textContent = r[1] + ": " + Object.entries(r[2]).map(([k, v]) => (NM2[k] || N[k] || k) + " " + (inv[k] || 0) + "/" + v).join(", ");
+  $("mk").disabled = !can(r);
+}
+function ui() {
+  syncQ();
+  ui0();
+  $("hb").innerHTML = $("qk").innerHTML = qHTML();
+  $("res").innerHTML = resHTML();
+  renderCraft();
+}
+function renderChest() {
+  if (!curC) return;
+  const c = Object.keys(curC.inv).filter((k) => curC.inv[k] > 0).map((k) => `<div class="sl" data-c="${k}"><b>${IC[k] || "\u{1F4E6}"}</b><span>${N[k] || NM2[k] || k}</span><i>\xD7${curC.inv[k]}</i></div>`);
+  while (c.length < 16 || c.length % 8) c.push('<div class="sl em"></div>');
+  $("cg").innerHTML = c.join("");
+}
+function openP(m) {
+  pmode = m;
+  $("pn").style.display = "block";
+  $("hI").style.display = m == "craft" ? "none" : "block";
+  $("hI").textContent = m == "chest" ? "\u0420\u044E\u043A\u0437\u0430\u043A" : "\u0418\u043D\u0432\u0435\u043D\u0442\u0430\u0440\u044C";
+  $("res").style.display = m == "craft" ? "none" : "grid";
+  $("qk").style.display = m == "inv" ? "flex" : "none";
+  $("cs").style.display = m == "chest" ? "block" : "none";
+  $("hC").style.display = m == "craft" ? "block" : "none";
+  $("rcw").style.display = m == "craft" ? "block" : "none";
+}
+function solid(x, z, m, f) {
+  for (const b of bl) {
+    if (b.t == "w") {
+      if (Math.abs(x - b.x) < (b.o ? 0.15 : 2) + m && Math.abs(z - b.z) < (b.o ? 2 : 0.15) + m) return true;
+    } else if (b.t == "d") {
+      const bs = [[-1.3, 0.7], [1.3, 0.7]];
+      if (b.door && !b.door.open) bs.push([0, 0.6]);
+      for (const [o2, hl] of bs) {
+        const cx = b.x + (b.o ? 0 : o2), cz2 = b.z + (b.o ? o2 : 0);
+        if (Math.abs(x - cx) < (b.o ? 0.15 : hl) + m && Math.abs(z - cz2) < (b.o ? hl : 0.15) + m) return true;
+      }
+    } else if (f && b.t == "f" && Math.abs(x - b.x) < 2 + m && Math.abs(z - b.z) < 2 + m) return true;
+  }
+  return false;
+}
+function wallBetween(x0, z0, x1, z1) {
+  for (let i = 1; i < 8; i++) {
+    const t = i / 8;
+    if (solid(x0 + (x1 - x0) * t, z0 + (z1 - z0) * t, 0.1, false)) return true;
+  }
+  return false;
+}
+function valid(p) {
+  if (p.y < WL + 0.1) return false;
+  const w = RK[sel] || sel == "doorframe";
+  if (sel == "door") return bl.some((b) => b.t == "d" && !b.door && b.x == p.x && b.z == p.z && b.o == p.o);
+  if (w) {
+    const ex = bl.find((b) => (b.t == "w" || b.t == "d") && b.x == p.x && b.z == p.z && b.o == p.o);
+    return !ex || ex.t == "w" && (sel == "doorframe" || RK[sel] && RK[ex.kd] < RK[sel]);
+  }
+  if (sel == "foundation") return !bl.some((b) => b.t == "f" && b.x == p.x && b.z == p.z);
+  if (sel == "roof") return !bl.some((b) => b.t == "r" && b.x == p.x && b.z == p.z);
+  const d = sel == "bed" ? [0, 0.95, -0.95] : [0];
+  return !wallBetween(P.x, P.z, p.x, p.z) && d.every((k) => !solid(p.x + Math.sin(p.o) * k, p.z + Math.cos(p.o) * k, 0.4, false));
+}
+function demolish() {
+  const e = eye(), f = fw();
+  let best = null, bt = 5.5;
+  for (const b of bl) {
+    const wl = b.t == "w" || b.t == "d", cy = wl ? b.y0 + 1.5 : b.m.position.y + 0.3, r = wl ? 2.1 : b.t == "f" || b.t == "r" ? 2.3 : 0.9, vx = b.x - e.x, vy2 = cy - e.y, vz = b.z - e.z, t = vx * f.x + vy2 * f.y + vz * f.z;
+    if (t < 0 || t > bt) continue;
+    if (vx * vx + vy2 * vy2 + vz * vz - t * t < r * r) {
+      bt = t;
+      best = b;
+    }
+  }
+  if (!best) return msg("\u041D\u0430\u0432\u0435\u0434\u0438\u0442\u0435\u0441\u044C \u043D\u0430 \u043F\u043E\u0441\u0442\u0440\u043E\u0439\u043A\u0443 (\u0434\u043E 5 \u043C)");
+  S.remove(best.m);
+  bl.splice(bl.indexOf(best), 1);
+  const fi = fires.indexOf(best);
+  if (fi >= 0) fires.splice(fi, 1);
+  if (best.inv) for (const k in best.inv) inv[k] = (inv[k] || 0) + best.inv[k];
+  if (best.door) inv.door++;
+  if (best.kd) inv[best.kd]++;
+  emit(best.x, best.m.position.y + 1, best.z, 16, [0.6, 0.5, 0.35], 2.5, 1.5, 0.9, 9);
+  snd(200, 0.3, 0.8);
+  msg("\u0420\u0430\u0437\u043E\u0431\u0440\u0430\u043D\u043E: " + (N[best.kd] || "\u043F\u043E\u0441\u0442\u0440\u043E\u0439\u043A\u0430"));
+  ui();
+}
+$("mn").onclick = () => {
+  if (curC) {
+    curC.lid.rotation.x = 0;
+    curC = null;
+  }
+  openP("inv");
+  ui();
+};
+$("cf").onclick = () => {
+  if (curC) {
+    curC.lid.rotation.x = 0;
+    curC = null;
+  }
+  openP("craft");
+  ui();
+};
+$("hb").onclick = $("qk").onclick = (e) => {
+  const b = e.target.closest("[data-q]");
+  if (b) {
+    qs = +b.dataset.q;
+    ui();
+  }
+};
+$("res").onclick = (e) => {
+  const s = e.target.closest("[data-k]");
+  if (!s) return;
+  const k = s.dataset.k;
+  if (pmode == "chest" && curC) {
+    if (k == "rock") return;
+    curC.inv[k] = (curC.inv[k] || 0) + inv[k];
+    inv[k] = 0;
+    renderChest();
+    ui();
+    return;
+  }
+  if (k == "meat" || k == "cooked") eat();
+  else if (k == "bandage") {
+    inv.bandage--;
+    hp = Math.min(100, hp + 30);
+    msg("\u0411\u0438\u043D\u0442 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D");
+    ui();
+  } else if (HK.includes(k)) {
+    const j = qk.indexOf(k);
+    if (j >= 0) qk[j] = null;
+    qk[qs] = k;
+    ui();
+    msg("\u0421\u043B\u043E\u0442 " + (qs + 1) + ": " + N[k]);
+  }
+};
+$("rc").onclick = (e) => {
+  const c = e.target.closest("[data-i]");
+  if (c) {
+    rsel = +c.dataset.i;
+    renderCraft();
+  }
+};
+$("mk").onclick = () => {
+  const r = RC[rsel];
+  if (!r || !can(r)) return msg("\u041D\u0435 \u0445\u0432\u0430\u0442\u0430\u0435\u0442 \u0440\u0435\u0441\u0443\u0440\u0441\u043E\u0432");
+  for (const k in r[2]) inv[k] -= r[2][k];
+  inv[r[0]] += r[3];
+  msg("\u0421\u043E\u0437\u0434\u0430\u043D\u043E: " + r[1]);
+  if (r[0] == "jacket") SLV.color.setHex(7031339);
+  ui();
+};
+$("dm").onclick = demolish;
 function camMode() {
   tp = (tp + 1) % 3;
   $("cm").textContent = ["1 \u043B\u0438\u0446\u043E", "\u0421\u0437\u0430\u0434\u0438", "\u0421\u043F\u0435\u0440\u0435\u0434\u0438"][tp];
@@ -1744,7 +1983,7 @@ function humanAnim(m, sw, t) {
     g.hp.rotation.x = air ? -0.7 : -Math.sin(q) * A;
     g.kn.rotation.x = air ? 1.1 : Math.max(0, cs2) * (1 + 0.8 * rs) * m + 0.08 + Math.max(0, -cs2) * 0.1 * m;
   }
-  H.pel.position.y = 0.95 - (air ? 0.12 : Math.cos(2 * ph) * (0.02 + 0.02 * rs) * m);
+  H.pel.position.y = 0.95 - 0.3 * crs - (air ? 0.12 : Math.cos(2 * ph) * (0.02 + 0.02 * rs) * m);
   H.pel.rotation.y = s * 0.12 * m;
   H.pel.rotation.z = s * 0.04 * m + Math.sin(t * 7e-4) * 0.012 * (1 - m);
   H.ch.rotation.y = -s * 0.18 * m + sw * 0.5;
@@ -1760,7 +1999,7 @@ function humanAnim(m, sw, t) {
   H.R.el.rotation.x = bow ? -0.9 : -1.2 - sw * 0.2;
 }
 const RT2 = new T.WebGLRenderTarget(2, 2, { minFilter: T.LinearFilter, magFilter: T.LinearFilter });
-RT.depthTexture = new T.DepthTexture(2, 2, T.UnsignedIntType);
+if (R.capabilities.isWebGL2 || R.extensions.has("WEBGL_depth_texture")) RT.depthTexture = new T.DepthTexture(2, 2, T.UnsignedIntType);
 const EN = new T.ShaderMaterial({ depthTest: false, uniforms: { tc: { value: RT.texture }, td: { value: RT.depthTexture }, sun: { value: new T.Vector2(0.5, 0.5) }, rs: { value: new T.Vector2(1, 1) }, sv: { value: 0 }, ao: { value: 0.9 }, nr: { value: 0.05 }, fr: { value: 300 } }, vertexShader: "varying vec2 v;void main(){v=uv;gl_Position=vec4(position.xy,0.,1.);}", fragmentShader: `varying vec2 v;uniform sampler2D tc,td;uniform vec2 sun,rs;uniform float sv,ao,nr,fr;
 float ld(vec2 u){float z=texture2D(td,u).x;return nr*fr/(fr-z*(fr-nr));}
 void main(){vec3 c=texture2D(tc,v).rgb;float z0=texture2D(td,v).x,d0=ld(v),oc=0.;
@@ -1829,10 +2068,19 @@ function rainU(dt) {
   rl.material.opacity = 0.45 * wet;
   rl.visible = wet > 0.02;
   if (wet > 0.02) {
+    const rfs = bl.filter((b) => b.t == "r");
     for (let i = 0; i < RN; i++) {
       const j = i * 6;
       rp[j + 1] -= 18 * dt;
       rp[j + 4] -= 18 * dt;
+      if (rfs.length) {
+        const wx = P.x + rp[j], wz = P.z + rp[j + 2], wy = P.y + rp[j + 4];
+        for (const r of rfs) if (Math.abs(wx - r.x) < 2.1 && Math.abs(wz - r.z) < 2.1 && wy < r.py + 0.2 && wy > r.py - 2) {
+          rp[j + 1] += 14;
+          rp[j + 4] += 14;
+          break;
+        }
+      }
       if (rp[j + 4] < 0) {
         rp[j + 1] += 14;
         rp[j + 4] += 14;
@@ -1947,19 +2195,23 @@ let last = performance.now();
   requestAnimationFrame(loop);
   const n = performance.now(), dt = Math.min(0.05, (n - last) / 1e3);
   last = n;
-  if (playing && !dead) {
-    step(dt);
-    actU(dt);
-    if (holdHit) hit();
+  try {
+    if (playing && !dead) {
+      step(dt);
+      actU(dt);
+      if (holdHit) hit("m");
+    }
+    if (!playing) {
+      yaw += dt * 0.05;
+      pitch = 0.12;
+    }
+    world(dt);
+    rainU(dt);
+  } catch (e) {
+    showErr("\u041E\u0448\u0438\u0431\u043A\u0430: " + e.message);
   }
-  if (!playing) {
-    yaw += dt * 0.05;
-    pitch = 0.12;
-  }
-  world(dt);
-  rainU(dt);
   const m1 = Math.min(1, mv), sw1 = Math.sin(bobT) * 0.7 * m1, sw2 = Math.sin(swing * Math.PI);
-  const ey = P.y + 1.6 + Math.sin(bobT) * 0.035 * m1, ff = fw();
+  const ey = P.y + 1.6 - 0.55 * crs + Math.sin(bobT) * 0.035 * m1, ff = fw();
   if (tp == 1) {
     const D = camD(ff, -1);
     C.position.set(P.x - ff.x * D, Math.max(ey - ff.y * D + 0.15, gh(P.x, P.z) + 0.3), P.z - ff.z * D);
@@ -1981,15 +2233,30 @@ let last = performance.now();
   eu.sun.value.set(s3.x * 0.5 + 0.5, s3.y * 0.5 + 0.5);
   eu.sv.value = (sdv.y > 0.02 && fw().dot(sdv) > 0.2 ? 1 : 0) * dayL * (1 - wet);
   eu.ao.value = 0.9;
-  R.setRenderTarget(RT);
-  R.render(S, C);
-  if (ST.fx) {
-    R.setRenderTarget(RT2);
-    R.render(ES, PC);
+  if (fxOff) {
+    R.setRenderTarget(null);
+    R.render(S, C);
+  } else try {
+    const d2 = ST.fx == 2 && RT.depthTexture && resS > 0.65;
+    R.setRenderTarget(RT);
+    R.render(S, C);
+    if (d2) {
+      R.setRenderTarget(RT2);
+      R.render(ES, PC);
+    }
+    PM.uniforms.t.value = d2 ? RT2.texture : RT.texture;
+    R.setRenderTarget(null);
+    R.render(PS, PC);
+  } catch (e) {
+    fxOff = 1;
+    R.setRenderTarget(null);
+    R.toneMapping = T.ACESFilmicToneMapping;
+    R.outputEncoding = T.sRGBEncoding;
+    S.traverse((o) => {
+      if (o.material) o.material.needsUpdate = true;
+    });
+    showErr("\u0428\u0435\u0439\u0434\u0435\u0440 \u043E\u0442\u043A\u043B\u044E\u0447\u0451\u043D: " + e.message);
   }
-  PM.uniforms.t.value = ST.fx ? RT2.texture : RT.texture;
-  R.setRenderTarget(null);
-  R.render(PS, PC);
 })();
 const show = (a) => {
   $("mb").style.display = a == "mb" ? "contents" : "none";
@@ -2047,6 +2314,145 @@ try {
 } catch (e) {
 }
 $("cm").onclick = camMode;
+function showErr(t) {
+  const e = $("err");
+  e.style.display = "block";
+  e.textContent = t;
+}
+function adapt(f) {
+  if (!ST.au || !playing) return;
+  if (f < 26) {
+    if (++lowN >= 2) {
+      lowN = 0;
+      resS = Math.max(0.5, resS - 0.15);
+      applyS();
+    }
+  } else {
+    lowN = 0;
+    if (f > 56 && resS < 1) {
+      resS = Math.min(1, resS + 0.05);
+      applyS();
+    }
+  }
+}
+R.domElement.addEventListener("webglcontextlost", (e) => {
+  e.preventDefault();
+  showErr("\u041F\u043E\u0442\u0435\u0440\u044F\u043D \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442 WebGL: \u0441\u043D\u0438\u0437\u044C\u0442\u0435 \u0433\u0440\u0430\u0444\u0438\u043A\u0443 \u0432 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0430\u0445 \u0438 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443");
+});
+const CB = ["hit", "fire", "pl", "dm", "jmp", "cr", "run", "eat", "us", "fl", "mn", "cf", "ps", "cm"];
+CB.forEach((id) => $(id).classList.add("cb"));
+let LAY = {}, editM = 0, dg = null;
+try {
+  LAY = JSON.parse(localStorage.BL) || {};
+} catch (e) {
+}
+function layoutDef() {
+  const W = innerWidth, Hh = innerHeight, u = Math.min(Hh * 0.13, 64) * ST.bs / 100, sz = { hit: [u * 1.7, u * 1.7], jmp: [u * 1.2, u * 1.2] }, rows = [["hit", "jmp", "cr", "run"], ["fire", "pl", "dm", "eat", "us", "fl"]];
+  let y = Hh * 0.97;
+  for (const r of rows) {
+    let x = W * 0.98, rh = 0;
+    for (const id of r) {
+      const b = $(id), s = sz[id] || [u * 1.45, u * 0.85];
+      b.style.right = b.style.bottom = "auto";
+      b.style.width = s[0] + "px";
+      b.style.height = s[1] + "px";
+      x -= s[0];
+      b.style.left = x + "px";
+      b.style.top = y - s[1] + "px";
+      x -= 8;
+      rh = Math.max(rh, s[1]);
+    }
+    y -= rh + 8;
+  }
+}
+function applyLayout() {
+  layoutDef();
+  [["mn", 116, 48], ["ps", 84, 48], ["cm", 88, 44], ["cf", 84, 48]].forEach(([id, w, hh]) => {
+    const b = $(id), k = ST.bs / 100;
+    b.style.width = w * k + "px";
+    b.style.height = hh * k + "px";
+  });
+  for (const id in LAY) {
+    const b = $(id);
+    if (!b) continue;
+    b.style.left = LAY[id][0] * innerWidth + "px";
+    b.style.top = LAY[id][1] * innerHeight + "px";
+    b.style.right = b.style.bottom = "auto";
+  }
+}
+$("hit").onpointerdown = () => {
+  holdHit = true;
+  hit("m");
+};
+$("hit").onpointerup = $("hit").onpointerleave = () => holdHit = false;
+$("fire").onpointerdown = () => hit("f");
+$("pl").onpointerdown = () => hit("p");
+$("cr").onclick = () => {
+  cr ^= 1;
+  $("cr").style.background = cr ? "#c4572a" : "";
+};
+$("run").onclick = () => {
+  runT ^= 1;
+  $("run").style.background = runT ? "#c4572a" : "";
+};
+$("ed").onclick = () => {
+  editM = 1;
+  $("mm").style.display = "none";
+  $("ok").style.display = "block";
+  document.body.classList.add("ed");
+};
+$("ok").onclick = () => {
+  editM = 0;
+  $("ok").style.display = "none";
+  document.body.classList.remove("ed");
+  $("mm").style.display = "flex";
+  show("so");
+};
+$("rl").onclick = () => {
+  for (const k in LAY) delete LAY[k];
+  try {
+    localStorage.removeItem("BL");
+  } catch (e) {
+  }
+  for (const id of ["mn", "ps", "cm"]) {
+    const b = $(id);
+    b.style.left = b.style.top = b.style.right = b.style.bottom = "";
+  }
+  applyLayout();
+};
+document.addEventListener("pointerdown", (e) => {
+  if (!editM) return;
+  const b = e.target.closest(".cb");
+  if (!b) return;
+  e.preventDefault();
+  e.stopPropagation();
+  const r = b.getBoundingClientRect();
+  dg = { b, dx: e.clientX - (parseFloat(b.style.left) || r.left), dy: e.clientY - (parseFloat(b.style.top) || r.top) };
+  b.style.right = b.style.bottom = "auto";
+}, true);
+document.addEventListener("pointermove", (e) => {
+  if (dg) {
+    dg.b.style.left = Math.max(0, Math.min(innerWidth - 30, e.clientX - dg.dx)) + "px";
+    dg.b.style.top = Math.max(0, Math.min(innerHeight - 30, e.clientY - dg.dy)) + "px";
+  }
+}, true);
+document.addEventListener("pointerup", () => {
+  if (dg) {
+    LAY[dg.b.id] = [parseFloat(dg.b.style.left) / innerWidth, parseFloat(dg.b.style.top) / innerHeight];
+    try {
+      localStorage.BL = JSON.stringify(LAY);
+    } catch (e) {
+    }
+    dg = null;
+  }
+}, true);
+document.addEventListener("click", (e) => {
+  if (editM && e.target.closest(".cb")) {
+    e.stopPropagation();
+    e.preventDefault();
+  }
+}, true);
+layReady = 1;
 pitch = 0.12;
 applyS();
 ui();
