@@ -51,6 +51,8 @@ button{font:inherit;color:var(--p);background:var(--bg);border:1px solid #5a4a3a
 #rc{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}.rcd{flex:0 0 92px;height:92px;background:#241d16;border:1px solid #5a4a3a;border-radius:8px;text-align:center;padding:6px 2px;font-size:12px}.rcd b{display:block;font-size:30px;font-weight:400}.rcd.on{border-color:#f0a070;background:#3a2a1e}.rcd.no{opacity:.45}
 #rd{margin:8px 0;font-size:15px}#mk{min-height:48px;padding:0 24px;background:var(--a)}#mk:disabled{opacity:.4}#cook{display:none}#rcw{display:none}
 #cf{top:calc(2vh + env(safe-area-inset-top,0px));right:calc(2vw + 216px);width:84px;height:min(10vh,48px);font-size:min(3.4vh,16px);padding:0}
+#gq{top:calc(2vh + env(safe-area-inset-top,0px));right:calc(2vw + 308px);width:100px;height:min(10vh,48px);font-size:min(3vh,14px);padding:0}#bsz,#bszl{display:none;left:50%;transform:translateX(-50%);z-index:30}#bsz{top:52%;width:260px}#bszl{top:46%;font-size:14px;text-shadow:0 1px 3px #000}.ed #bsz,.ed #bszl{display:block}
+#am{left:50%;transform:translateX(-50%);bottom:calc(80px + env(safe-area-inset-bottom,0px));font-size:15px;text-shadow:0 1px 3px #000;pointer-events:none}#cx{transition:transform .1s}
 #ok{display:none;left:50%;top:40%;transform:translateX(-50%);z-index:30;font-size:20px;padding:12px 22px;background:var(--a)}
 #err{left:12px;bottom:70px;max-width:60vw;font-size:12px;color:#ff8a7a;background:#000a;padding:4px 6px;display:none;pointer-events:none;z-index:60}
 #mm{inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:linear-gradient(#0b0a09aa,#1b120a99);flex-direction:column;gap:10px;overflow:auto;padding:20px;touch-action:pan-y}
@@ -66,7 +68,7 @@ button{font:inherit;color:var(--p);background:var(--bg);border:1px solid #5a4a3a
 #fl{right:20px;bottom:calc(190px + env(safe-area-inset-bottom,0px));width:64px;height:48px}
 </style></head><body>
 <div id="st" class="ab"><div class="br"><i id="b1" style="background:#b83a2e"></i></div><div class="br"><i id="b2" style="background:#d68a2d"></i></div><div class="br"><i id="b3" style="background:#3b8fc4"></i></div><div class="br"><i id="b4" style="background:#8bb86a"></i></div></div>
-<div id="cx" class="ab"></div><div id="rot">Поверните телефон горизонтально</div><div id="clk" class="ab"></div><div id="fps" class="ab"></div><div id="err" class="ab"></div>
+<div id="cx" class="ab"></div><div id="rot">Поверните телефон горизонтально</div><div id="clk" class="ab"></div><div id="fps" class="ab"></div><div id="err" class="ab"></div><div id="am" class="ab"></div>
 <div id="mm" class="ab"><h1>RUST LITE</h1><p>Одиночное выживание: добывайте ресурсы, стройте базу, охотьтесь и переживите ночь.</p>
 <div id="mb" style="display:contents"><button class="pr" id="play">Играть</button><button id="nw" style="display:none">Новая игра</button><button id="opt">Настройки</button><button id="how">Как играть</button></div>
 <div class="set" id="so">
@@ -90,7 +92,7 @@ button{font:inherit;color:var(--p);background:var(--bg);border:1px solid #5a4a3a
 <button id="bk">Назад</button></div>
 <div class="set" id="sh2"><p>Левый стик — ходить, до края — бег (тратит выносливость). Правая часть экрана — обзор. «Удар» бьёт, добывает, стреляет и строит. «Крафт» — рецепты и жарка мяса у костра. «Фонарь» включает свет ночью. Волки опаснее ночью.</p><button id="bk2">Назад</button></div></div><div id="ms" class="ab"></div><div id="vg" class="ab"></div><div id="js" class="ab"></div>
 <div id="hb" class="ab"></div>
-<button id="hit" class="ab">Удар</button><button id="jmp" class="ab">Прыжок</button><button id="eat" class="ab">Еда</button><button id="mn" class="ab">Инвентарь</button><button id="ps" class="ab">Меню</button><button id="fl" class="ab">Фонарь</button><button id="cm" class="ab">Вид</button><button id="us" class="ab">Действие</button><button id="fire" class="ab">Огонь</button><button id="pl" class="ab">Строить</button><button id="run" class="ab">Бег</button><button id="cr" class="ab">Присесть</button><button id="ok" class="ab">Готово</button><button id="cf" class="ab">Крафт</button><button id="dm" class="ab">Ломать</button>
+<button id="hit" class="ab">Удар</button><button id="jmp" class="ab">Прыжок</button><button id="eat" class="ab">Еда</button><button id="mn" class="ab">Инвентарь</button><button id="ps" class="ab">Меню</button><button id="fl" class="ab">Фонарь</button><button id="cm" class="ab">Вид</button><button id="us" class="ab">Действие</button><button id="fire" class="ab">Огонь</button><button id="pl" class="ab">Строить</button><button id="run" class="ab">Бег</button><button id="cr" class="ab">Присесть</button><button id="ok" class="ab">Готово</button><button id="cf" class="ab">Крафт</button><button id="dm" class="ab">Ломать</button><button id="aim" class="ab">Прицел</button><button id="rld" class="ab">Перезар.</button><button id="gq" class="ab">Графика</button><span id="bszl" class="ab">Размер выбранной кнопки</span><input type="range" id="bsz" class="ab" min="50" max="250" value="100">
 <div id="pn" class="ab"><h2 id="hI">Инвентарь</h2><div id="res"></div><div id="qk"></div>
 <div class="row"><button id="cook">Пожарить мясо у костра</button><button id="cl">Закрыть</button></div><div id="cs" style="display:none"><h2>Сундук</h2><div id="cg"></div><div class="row"><button id="cd">Положить ресурсы</button></div></div><h2 id="hC">Крафт</h2><div id="rcw"><div id="rc"></div><div id="rd"></div><button id="mk">Создать</button></div></div>
 <script src="three.min.js"></script>
@@ -129,7 +131,7 @@ try {
 } catch (e) {
 }
 if (ST.fv < 85) ST.fv = 95;
-let cr = 0, crs = 0, runT = 0, resS = 1, fxOff = 0, lowN = 0, layReady = 0, spn = null, curC = null, act = 0, actT = 0, rl2 = 0, isRun = 0, tp = 0, started = 0, lsv = 0, oid = 0, gone = [], wTarget = 0, playing = false, dayL = 1, mv = 0, bobT = 0, lastS = 0, sta = 100, flOn = 0, dmg = 0, fr = 0, ft = 0, AC, NB, gW;
+let ads = 0, holdF = 0, bfov = 70, cr = 0, crs = 0, runT = 0, resS = 1, fxOff = 0, lowN = 0, layReady = 0, spn = null, curC = null, act = 0, actT = 0, rl2 = 0, isRun = 0, tp = 0, started = 0, lsv = 0, oid = 0, gone = [], wTarget = 0, playing = false, dayL = 1, mv = 0, bobT = 0, lastS = 0, sta = 100, flOn = 0, dmg = 0, fr = 0, ft = 0, AC, NB, gW;
 sun.shadow.camera.left = sun.shadow.camera.bottom = -40;
 sun.shadow.camera.right = sun.shadow.camera.top = 40;
 sun.shadow.camera.far = 300;
@@ -397,7 +399,8 @@ function applyS() {
   RT2.setSize(innerWidth * pr, innerHeight * pr);
   EN.uniforms.rs.value.set(innerWidth * pr, innerHeight * pr);
   C.aspect = innerWidth / innerHeight;
-  C.fov = Math.min(80, 2 * Math.atan(Math.tan(ST.fv * Math.PI / 360) / C.aspect) * 180 / Math.PI);
+  bfov = Math.min(80, 2 * Math.atan(Math.tan(ST.fv * Math.PI / 360) / C.aspect) * 180 / Math.PI);
+  C.fov = bfov;
   C.updateProjectionMatrix();
   R.shadowMap.enabled = !!ST.sh;
   sun.castShadow = !!ST.sh;
@@ -421,16 +424,16 @@ function applyS() {
 }
 function h(x, z) {
   const f = Math.min(1, Math.max(0, (Math.hypot(x, z) - 14) / 30));
-  return (Math.sin(x * 0.03) * Math.cos(z * 0.04) * 4 + Math.sin(x * 0.09 + z * 0.06) * 1.3 + Math.sin(z * 0.017 + 1) * 3 + 1.5) * f + f * 0 + 1 * (1 - f);
+  return (Math.sin(x * 0.03) * Math.cos(z * 0.04) * 4 + Math.sin(x * 0.09 + z * 0.06) * 1.3 + Math.sin(z * 0.017 + 1) * 3 + 1.5) * f + f * 0 + 1 * (1 - f) + (Math.sin(x * 0.9 + Math.cos(z * 0.7) * 2) * 0.09 + Math.sin(z * 1.3 - x * 0.6) * 0.07 + Math.sin(x * 2.3 + z * 1.9) * 0.035) * Math.min(1, 0.3 + f);
 }
 {
-  const g = new T.PlaneGeometry(400, 400, 130, 130);
+  const g = new T.PlaneGeometry(400, 400, 240, 240);
   g.rotateX(-Math.PI / 2);
   const p = g.attributes.position, cs2 = [];
   for (let i = 0; i < p.count; i++) {
     const x = p.getX(i), z = p.getZ(i), y = h(x, z);
     p.setY(i, y);
-    const c = new T.Color(y < WL + 0.6 ? 13218426 : y > 5 ? 8223348 : 5208634).offsetHSL(0, 0, L(-0.04, 0.04));
+    const sl = Math.abs(h(x + 1, z) - y) + Math.abs(h(x, z + 1) - y), pn = Math.sin(x * 0.05) * Math.sin(z * 0.07) + Math.sin(x * 0.21 + z * 0.13) * 0.5, c = new T.Color(y < WL + 0.7 ? 12100972 : sl > 0.9 ? 8024938 : sl > 0.55 ? 7236162 : pn > 0.5 ? 8227386 : pn < -0.5 ? 5599278 : 5208634).offsetHSL(L(-0.02, 0.02), L(-0.05, 0.05), L(-0.05, 0.05));
     cs2.push(c.r, c.g, c.b);
   }
   g.setAttribute("color", new T.Float32BufferAttribute(cs2, 3));
@@ -446,14 +449,14 @@ function h(x, z) {
   S.add(w);
 }
 const N = { rock: "\u041A\u0430\u043C\u0435\u043D\u044C", hatchet: "\u0422\u043E\u043F\u043E\u0440", pickaxe: "\u041A\u0438\u0440\u043A\u0430", spear: "\u041A\u043E\u043F\u044C\u0451", bow: "\u041B\u0443\u043A", foundation: "\u0424\u0443\u043D\u0434\u0430\u043C\u0435\u043D\u0442", wall: "\u0421\u0442\u0435\u043D\u0430", mwall: "\u041C\u0435\u0442\u0430\u043B. \u0441\u0442\u0435\u043D\u0430", campfire: "\u041A\u043E\u0441\u0442\u0451\u0440" };
-Object.assign(N, { swall: "\u041A\u0430\u043C\u0435\u043D\u043D\u0430\u044F \u0441\u0442\u0435\u043D\u0430", furnace: "\u041F\u0435\u0447\u044C", chest: "\u0421\u0443\u043D\u0434\u0443\u043A", bed: "\u041A\u0440\u043E\u0432\u0430\u0442\u044C", doorframe: "\u0421\u0442\u0435\u043D\u0430 \u0441 \u043F\u0440\u043E\u0451\u043C\u043E\u043C", door: "\u0414\u0432\u0435\u0440\u044C", roof: "\u041A\u0440\u044B\u0448\u0430", mhatchet: "\u041C\u0435\u0442\u0430\u043B. \u0442\u043E\u043F\u043E\u0440", mpick: "\u041C\u0435\u0442\u0430\u043B. \u043A\u0438\u0440\u043A\u0430" });
-const PL = { foundation: 1, wall: 1, mwall: 1, campfire: 1, chest: 1, bed: 1, furnace: 1, swall: 1, doorframe: 1, door: 1, roof: 1 }, HK = Object.keys(N);
-const base = { rock: 1, hatchet: 0, pickaxe: 0, spear: 0, bow: 0, arrow: 0, wood: 0, stone: 0, metal: 0, meat: 0, cooked: 0, foundation: 0, wall: 0, mwall: 0, campfire: 0, hide: 0, jacket: 0, ore: 0, chest: 0, bed: 0, furnace: 0, doorframe: 0, door: 0, roof: 0, swall: 0, mhatchet: 0, mpick: 0, helmet: 0, bandage: 0 };
+Object.assign(N, { rifle: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442", pistol: "\u041F\u0438\u0441\u0442\u043E\u043B\u0435\u0442", sfound: "\u041A\u0430\u043C. \u0444\u0443\u043D\u0434\u0430\u043C\u0435\u043D\u0442", ceil: "\u041F\u043E\u0442\u043E\u043B\u043E\u043A", stairs: "\u041B\u0435\u0441\u0442\u043D\u0438\u0446\u0430", swall: "\u041A\u0430\u043C\u0435\u043D\u043D\u0430\u044F \u0441\u0442\u0435\u043D\u0430", furnace: "\u041F\u0435\u0447\u044C", chest: "\u0421\u0443\u043D\u0434\u0443\u043A", bed: "\u041A\u0440\u043E\u0432\u0430\u0442\u044C", doorframe: "\u0421\u0442\u0435\u043D\u0430 \u0441 \u043F\u0440\u043E\u0451\u043C\u043E\u043C", door: "\u0414\u0432\u0435\u0440\u044C", roof: "\u041A\u0440\u044B\u0448\u0430", mhatchet: "\u041C\u0435\u0442\u0430\u043B. \u0442\u043E\u043F\u043E\u0440", mpick: "\u041C\u0435\u0442\u0430\u043B. \u043A\u0438\u0440\u043A\u0430" });
+const PL = { foundation: 1, wall: 1, mwall: 1, campfire: 1, chest: 1, bed: 1, furnace: 1, swall: 1, sfound: 1, ceil: 1, stairs: 1, doorframe: 1, door: 1, roof: 1 }, HK = Object.keys(N);
+const base = { rock: 1, hatchet: 0, pickaxe: 0, spear: 0, bow: 0, arrow: 0, wood: 0, stone: 0, metal: 0, meat: 0, cooked: 0, foundation: 0, wall: 0, mwall: 0, campfire: 0, hide: 0, jacket: 0, ore: 0, chest: 0, bed: 0, furnace: 0, doorframe: 0, door: 0, roof: 0, swall: 0, sfound: 0, ceil: 0, stairs: 0, rifle: 0, pistol: 0, mag: 0, scope: 0, bullet: 0, sulfur: 0, mhatchet: 0, mpick: 0, helmet: 0, bandage: 0 };
 const inv = __spreadValues({}, base);
 let sel = "rock", hp = 100, fd = 100, wt = 100, dead = false, dayT = 0.3, cd = 0, swing = 0, holdHit = false;
 const P = new T.Vector3(0, h(0, 0), 0);
 let vy = 0, yaw = 0, pitch = 0;
-const RC = [["hatchet", "\u0422\u043E\u043F\u043E\u0440", { wood: 30, stone: 15 }, 1], ["pickaxe", "\u041A\u0438\u0440\u043A\u0430", { wood: 30, stone: 20 }, 1], ["spear", "\u041A\u043E\u043F\u044C\u0451", { wood: 40, stone: 10 }, 1], ["bow", "\u041B\u0443\u043A", { wood: 50 }, 1], ["jacket", "\u041A\u0443\u0440\u0442\u043A\u0430 \u0438\u0437 \u0448\u043A\u0443\u0440", { hide: 5 }, 1], ["arrow", "\u0421\u0442\u0440\u0435\u043B\u044B \xD75", { wood: 10, stone: 5 }, 5], ["campfire", "\u041A\u043E\u0441\u0442\u0451\u0440", { wood: 40 }, 1], ["furnace", "\u041F\u0435\u0447\u044C", { stone: 60, wood: 20 }, 1], ["chest", "\u0421\u0443\u043D\u0434\u0443\u043A", { wood: 80 }, 1], ["bed", "\u041A\u0440\u043E\u0432\u0430\u0442\u044C", { wood: 60, hide: 6 }, 1], ["doorframe", "\u0421\u0442\u0435\u043D\u0430 \u0441 \u043F\u0440\u043E\u0451\u043C\u043E\u043C", { wood: 40 }, 1], ["door", "\u0414\u0432\u0435\u0440\u044C", { wood: 30 }, 1], ["roof", "\u041A\u0440\u044B\u0448\u0430", { wood: 50 }, 1], ["swall", "\u041A\u0430\u043C\u0435\u043D\u043D\u0430\u044F \u0441\u0442\u0435\u043D\u0430", { stone: 50, wood: 10 }, 1], ["mhatchet", "\u041C\u0435\u0442\u0430\u043B. \u0442\u043E\u043F\u043E\u0440", { metal: 20, wood: 30 }, 1], ["mpick", "\u041C\u0435\u0442\u0430\u043B. \u043A\u0438\u0440\u043A\u0430", { metal: 25, wood: 30 }, 1], ["helmet", "\u0428\u043B\u0435\u043C", { metal: 12, hide: 3 }, 1], ["bandage", "\u0411\u0438\u043D\u0442 \xD73", { hide: 2 }, 3], ["foundation", "\u0424\u0443\u043D\u0434\u0430\u043C\u0435\u043D\u0442", { wood: 60 }, 1], ["wall", "\u0414\u0435\u0440\u0435\u0432\u044F\u043D\u043D\u0430\u044F \u0441\u0442\u0435\u043D\u0430", { wood: 30 }, 1], ["mwall", "\u041C\u0435\u0442\u0430\u043B. \u0441\u0442\u0435\u043D\u0430", { metal: 15, wood: 10 }, 1]];
+const RC = [["hatchet", "\u0422\u043E\u043F\u043E\u0440", { wood: 30, stone: 15 }, 1], ["pickaxe", "\u041A\u0438\u0440\u043A\u0430", { wood: 30, stone: 20 }, 1], ["spear", "\u041A\u043E\u043F\u044C\u0451", { wood: 40, stone: 10 }, 1], ["bow", "\u041B\u0443\u043A", { wood: 50 }, 1], ["jacket", "\u041A\u0443\u0440\u0442\u043A\u0430 \u0438\u0437 \u0448\u043A\u0443\u0440", { hide: 5 }, 1], ["arrow", "\u0421\u0442\u0440\u0435\u043B\u044B \xD75", { wood: 10, stone: 5 }, 5], ["campfire", "\u041A\u043E\u0441\u0442\u0451\u0440", { wood: 40 }, 1], ["furnace", "\u041F\u0435\u0447\u044C", { stone: 60, wood: 20 }, 1], ["chest", "\u0421\u0443\u043D\u0434\u0443\u043A", { wood: 80 }, 1], ["bed", "\u041A\u0440\u043E\u0432\u0430\u0442\u044C", { wood: 60, hide: 6 }, 1], ["doorframe", "\u0421\u0442\u0435\u043D\u0430 \u0441 \u043F\u0440\u043E\u0451\u043C\u043E\u043C", { wood: 40 }, 1], ["door", "\u0414\u0432\u0435\u0440\u044C", { wood: 30 }, 1], ["roof", "\u041A\u0440\u044B\u0448\u0430", { wood: 50 }, 1], ["swall", "\u041A\u0430\u043C\u0435\u043D\u043D\u0430\u044F \u0441\u0442\u0435\u043D\u0430", { stone: 50, wood: 10 }, 1], ["sfound", "\u041A\u0430\u043C. \u0444\u0443\u043D\u0434\u0430\u043C\u0435\u043D\u0442", { stone: 100, wood: 20 }, 1], ["ceil", "\u041F\u043E\u0442\u043E\u043B\u043E\u043A", { wood: 60 }, 1], ["stairs", "\u041B\u0435\u0441\u0442\u043D\u0438\u0446\u0430", { wood: 80 }, 1], ["pistol", "\u041F\u0438\u0441\u0442\u043E\u043B\u0435\u0442", { metal: 25, wood: 10 }, 1], ["rifle", "\u0410\u0432\u0442\u043E\u043C\u0430\u0442", { metal: 60, wood: 25 }, 1], ["mag", "\u041C\u0430\u0433\u0430\u0437\u0438\u043D", { metal: 15 }, 1], ["scope", "\u041F\u0440\u0438\u0446\u0435\u043B", { metal: 20, stone: 10 }, 1], ["bullet", "\u041F\u0430\u0442\u0440\u043E\u043D\u044B \xD710", { metal: 2, sulfur: 3 }, 10], ["mhatchet", "\u041C\u0435\u0442\u0430\u043B. \u0442\u043E\u043F\u043E\u0440", { metal: 20, wood: 30 }, 1], ["mpick", "\u041C\u0435\u0442\u0430\u043B. \u043A\u0438\u0440\u043A\u0430", { metal: 25, wood: 30 }, 1], ["helmet", "\u0428\u043B\u0435\u043C", { metal: 12, hide: 3 }, 1], ["bandage", "\u0411\u0438\u043D\u0442 \xD73", { hide: 2 }, 3], ["foundation", "\u0424\u0443\u043D\u0434\u0430\u043C\u0435\u043D\u0442", { wood: 60 }, 1], ["wall", "\u0414\u0435\u0440\u0435\u0432\u044F\u043D\u043D\u0430\u044F \u0441\u0442\u0435\u043D\u0430", { wood: 30 }, 1], ["mwall", "\u041C\u0435\u0442\u0430\u043B. \u0441\u0442\u0435\u043D\u0430", { metal: 15, wood: 10 }, 1]];
 const CN = { hide: "\u0448\u043A\u0443\u0440\u0430", wood: "\u0434\u0435\u0440\u0435\u0432\u043E", stone: "\u043A\u0430\u043C\u0435\u043D\u044C", metal: "\u043C\u0435\u0442\u0430\u043B\u043B" };
 const obs = [], bl = [], fires = [], an = [];
 const cyl = new T.CylinderGeometry(0.28, 0.5, 4.4, 10, 3), cone = (() => {
@@ -472,7 +475,10 @@ const cyl = new T.CylinderGeometry(0.28, 0.5, 4.4, 10, 3), cone = (() => {
   }
   g.computeVertexNormals();
   return g;
-})(), mT = SM(TB, 16777215, 1.3), mLs = [SM(TL, 10467472, 1), SM(TL, 11848863, 1), SM(TL, 13164462, 1)], F = (c) => new T.MeshLambertMaterial({ color: c, flatShading: true }), mS = SM(TR, 16777215, 2, 1), mM = SM(TM, 16777215, 2, 1);
+})(), mT = SM(TB, 16777215, 1.3), mLs = [SM(TL, 10467472, 1), SM(TL, 11848863, 1), SM(TL, 13164462, 1)], F = (c) => new T.MeshLambertMaterial({ color: c, flatShading: true }), mS = SM(TR, 16777215, 2, 1), mM = SM(TM, 16777215, 2, 1), mSu = SM(TX(256, (u, v) => {
+  const l = 0.5 + fb(u * 5, v * 5, 5) * 0.8;
+  return [230 * l, 200 * l, 40 * l];
+}, [1, 1]), 16777215, 2, 1);
 function addOb(type, x, z) {
   const y = h(x, z), m = new T.Group();
   if (type == "tree") {
@@ -481,7 +487,7 @@ function addOb(type, x, z) {
     m.rotation.y = L(0, 6);
     m.rotation.z = L(-0.04, 0.04);
   } else {
-    const a = new T.Mesh(dod, type == "stone" ? mS : mM);
+    const a = new T.Mesh(dod, type == "stone" ? mS : type == "sulfur" ? mSu : mM);
     a.position.y = 0.5;
     a.scale.set(L(1, 1.5), L(0.8, 1.2), L(1, 1.5));
     m.add(a);
@@ -502,6 +508,7 @@ function land() {
 for (let i = 0; i < 150; i++) addOb("tree", ...land());
 for (let i = 0; i < 45; i++) addOb("stone", ...land());
 for (let i = 0; i < 22; i++) addOb("metal", ...land());
+for (let i = 0; i < 16; i++) addOb("sulfur", ...land());
 const bx = new T.BoxGeometry(1, 1, 1);
 const gI = new T.InstancedMesh(new T.PlaneGeometry(1, 0.8).translate(0, 0.4, 0), new T.MeshLambertMaterial({ map: tuft, alphaTest: 0.5, side: T.DoubleSide }), 7200);
 {
@@ -644,7 +651,7 @@ function spawnA(w) {
 for (let i = 0; i < 14; i++) addA(0, ...land());
 for (let i = 0; i < 3; i++) addA(1, ...land());
 rnd = Math.random;
-function gh(x, z) {
+function gnd0(x, z) {
   let y = h(x, z);
   for (const b of bl) if (b.t == "f" && Math.abs(x - b.x) <= 2.01 && Math.abs(z - b.z) <= 2.01) y = Math.max(y, b.top);
   return y;
@@ -656,10 +663,10 @@ function plan() {
     return { x: fx2, z: fz2, y: gh(fx2, fz2), o: sel == "campfire" ? 0 : yaw };
   }
   const cx = Math.round(ax / 4) * 4, cz2 = Math.round(az / 4) * 4;
-  if (sel == "foundation" || sel == "roof") {
+  if (["foundation", "sfound", "roof", "ceil", "stairs"].includes(sel)) {
     let t = h(cx, cz2);
     for (const [a, b] of [[2, 2], [2, -2], [-2, 2], [-2, -2]]) t = Math.max(t, h(cx + a, cz2 + b));
-    return { x: cx, z: cz2, y: sel == "roof" ? Math.max(t + 0.3, gh(cx, cz2)) + 3 : t + 0.3, o: 0 };
+    return { x: cx, z: cz2, y: sel == "roof" || sel == "ceil" ? Math.max(t + 0.3, gh(cx, cz2, P.y)) + 3 : sel == "stairs" ? Math.max(t, gh(cx, cz2, P.y)) : t + 0.3, o: sel == "stairs" ? sdir() : 0 };
   }
   const dx = ax - cx, dz = az - cz2;
   let ex = cx, ez = cz2, o;
@@ -671,7 +678,7 @@ function plan() {
     o = 0;
   }
   const e = o ? [0, 1.9] : [1.9, 0];
-  return { x: ex, z: ez, y: Math.max(gh(ex, ez), gh(ex + e[0], ez + e[1]), gh(ex - e[0], ez - e[1])), o };
+  return { x: ex, z: ez, y: Math.max(gh(ex, ez, P.y), gh(ex + e[0], ez + e[1], P.y), gh(ex - e[0], ez - e[1], P.y)), o };
 }
 function valid1(p) {
   if (p.y < WL + 0.1) return false;
@@ -700,8 +707,8 @@ function place(p0) {
     if (!p0) ui();
     return;
   }
-  if (sel == "foundation") {
-    m = new T.Mesh(new T.BoxGeometry(4, 1.5, 4), SM(TP, 11569760, 0.8));
+  if (sel == "foundation" || sel == "sfound") {
+    m = new T.Mesh(new T.BoxGeometry(4, 1.5, 4), sel == "sfound" ? SM(TSW, 16777215, 2) : SM(TP, 11569760, 0.8));
     m.position.set(p.x, p.y - 0.75, p.z);
     b = { t: "f", x: p.x, z: p.z, o: 0, top: p.y };
   } else if (sel == "campfire") {
@@ -746,8 +753,18 @@ function place(p0) {
     m.position.set(p.x, p.y, p.z);
     m.rotation.y = p.o ? Math.PI / 2 : 0;
     b = { t: "d", x: p.x, z: p.z, o: p.o, y0: p.y, top: p.y + 3, door: null, m };
-  } else if (sel == "roof") {
-    m = new T.Mesh(new T.BoxGeometry(4, 0.25, 4), SM(TP, 10121288, 0.8));
+  } else if (sel == "stairs") {
+    m = new T.Group();
+    const w = SM(TP, 11569760, 0.8);
+    for (let i = 0; i < 12; i++) {
+      const tp2 = (i + 1) * 3.22 / 12;
+      mp0(m, w, [1.8, tp2, 4 / 12], [0, tp2 / 2, (i + 0.5) * 4 / 12 - 2]);
+    }
+    m.position.set(p.x, p.y, p.z);
+    m.rotation.y = Math.atan2(DIRS[p.o][0], DIRS[p.o][1]);
+    b = { t: "s", x: p.x, z: p.z, o: p.o, base: p.y };
+  } else if (sel == "roof" || sel == "ceil") {
+    m = new T.Mesh(new T.BoxGeometry(4, 0.25, 4), SM(TP, sel == "roof" ? 6965808 : 13215864, 0.8));
     m.position.set(p.x, p.y + 0.1, p.z);
     b = { t: "r", x: p.x, z: p.z, o: 0 };
   } else {
@@ -801,6 +818,40 @@ function setHeld() {
   } else if (k == "spear") {
     b(0.04, 0.04, 1.5, wd, 0, 0, -0.2);
     b(0.035, 0.05, 0.22, mt, 0, 0, -0.98);
+  } else if (GUN[k]) {
+    const gm = SM(TS, 3422012, 0.5), R3 = k == "rifle", cy3 = (r, l, m, x, y, z) => {
+      const q = new T.Mesh(cz, m);
+      q.scale.set(r, r, l);
+      q.position.set(x, y, z);
+      held.add(q);
+    };
+    if (R3) {
+      b(0.07, 0.1, 0.42, gm, 0, 0.06, -0.18);
+      cy3(0.018, 0.55, gm, 0, 0.075, -0.62);
+      b(0.075, 0.075, 0.3, wd, 0, 0.045, -0.45);
+      b(0.06, 0.12, 0.3, wd, 0, 0.04, 0.2);
+      b(0.045, 0.13, 0.06, wd, 0, -0.05, 0);
+      b(0.012, 0.04, 0.09, gm, 0, -0.02, -0.08);
+      b(0.01, 0.04, 0.01, gm, 0, 0.12, -0.88);
+      if (gd.mag) b(0.045, 0.2, 0.07, gm, 0, -0.13, -0.22);
+      if (gd.scope) {
+        cy3(0.03, 0.24, gm, 0, 0.15, -0.18);
+        b(0.03, 0.04, 0.03, gm, 0, 0.115, -0.1);
+        b(0.03, 0.04, 0.03, gm, 0, 0.115, -0.26);
+      } else b(0.03, 0.03, 0.01, gm, 0, 0.125, -0.04);
+    } else {
+      b(0.05, 0.07, 0.2, gm, 0, 0.04, -0.08);
+      b(0.045, 0.05, 0.22, gm, 0, 0.08, -0.1);
+      b(0.045, 0.12, 0.06, wd, 0, -0.04, 0.02);
+      if (gd.mag) b(0.035, 0.1, 0.05, gm, 0, -0.1, 0.02);
+      b(0.01, 0.02, 0.01, gm, 0, 0.12, -0.2);
+    }
+    const mf = new T.Sprite(flM[0]);
+    mf.name = "mf";
+    mf.scale.set(0.35, 0.35, 1);
+    mf.position.set(0, 0.075, R3 ? -0.95 : -0.3);
+    mf.visible = false;
+    held.add(mf);
   } else if (k == "bow") {
     b(0.04, 0.45, 0.04, wd, 0, 0.2, 0, -0.25);
     b(0.04, 0.45, 0.04, wd, 0, -0.2, 0, 0.25);
@@ -834,7 +885,7 @@ function ui0() {
   if (!ks.includes(sel)) sel = "rock";
   $("hb").innerHTML = ks.map((k) => `<button data-k="${k}" class="${k == sel ? "on" : ""}">${N[k]}${PL[k] ? " \xD7" + inv[k] : ""}</button>`).join("");
   {
-    const rg2 = sel == "bow" || sel == "spear";
+    const rg2 = sel == "bow" || sel == "spear" || !!GUN[sel];
     $("hit").classList.toggle("dim", !!PL[sel] || rg2);
     $("fire").classList.toggle("dim", !rg2);
     $("pl").classList.toggle("dim", !PL[sel]);
@@ -925,6 +976,11 @@ const WOOD = { rock: 4, hatchet: 14, pickaxe: 5, spear: 3, mhatchet: 24, mpick: 
 const eye = () => new T.Vector3(P.x, P.y + 1.6, P.z), fw = () => new T.Vector3(-Math.sin(yaw) * Math.cos(pitch), Math.sin(pitch), -Math.cos(yaw) * Math.cos(pitch));
 function hit(src, fire) {
   const now = performance.now();
+  if (GUN[sel] && !fire) {
+    if (src == "f") fireGun(now);
+    else if (src == "m") msg("\u041E\u0433\u043E\u043D\u044C \u2014 \u043A\u043D\u043E\u043F\u043A\u043E\u0439 \xAB\u041E\u0433\u043E\u043D\u044C\xBB");
+    return;
+  }
   if (dead || now < cd) return;
   const rg2 = sel == "bow" || sel == "spear";
   if (!fire) {
@@ -1007,9 +1063,15 @@ function hit(src, fire) {
     } else {
       if (!/pick/.test(sel)) return msg("\u0414\u043B\u044F \u0440\u0443\u0434\u044B \u043D\u0443\u0436\u043D\u0430 \u043A\u0438\u0440\u043A\u0430");
       g = sel == "mpick" ? 12 : 8;
-      inv.ore += g;
-      inv.stone += 3;
-      msg("+" + g + " \u0440\u0443\u0434\u044B");
+      if (o.type == "sulfur") {
+        inv.sulfur = (inv.sulfur || 0) + g;
+        msg("+" + g + " \u0441\u0435\u0440\u044B");
+      } else {
+        inv.ore += g;
+        inv.stone += 3;
+        msg("+" + g + " \u0440\u0443\u0434\u044B");
+      }
+      ;
       emit(o.x, o.y + 0.8, o.z, 14, [1, 0.6, 0.15], 3, 1.5, 0.6, 9);
     }
     if (o.type == "tree") o.sh = 0.5;
@@ -1102,6 +1164,8 @@ addEventListener("keydown", (e) => {
   if (e.code == "KeyX") hit("f");
   if (e.code == "KeyB") hit("p");
   if (e.code == "KeyT") demolish();
+  if (e.code == "KeyQ") $("aim").onclick();
+  if (e.code == "KeyG") $("rld").onclick();
   if (e.code == "KeyF") flOn ^= 1;
   if (e.code == "KeyC") $("mn").onclick();
   const n = +e.key;
@@ -1128,7 +1192,7 @@ function step(dt) {
     mx /= l;
     mz /= l;
   }
-  const gy = gh(P.x, P.z), run = (keys.ShiftLeft || runT || l > 0.97) && sta > 3 && l > 0.1 && crs < 0.5, sp = (run ? 7.5 : 5) * (gy < WL ? 0.5 : 1) * (1 - crs * 0.5);
+  const gy = gh(P.x, P.z, P.y), run = (keys.ShiftLeft || runT) && sta > 3 && l > 0.1 && crs < 0.5, sp = (run ? 7.5 : 5) * (gy < WL ? 0.5 : 1) * (1 - crs * 0.5) * (ads && (GUN[sel] || sel == "bow") ? 0.65 : 1);
   if (run) sta -= 5 * dt;
   else sta = Math.min(100, sta + 16 * dt);
   mv = l;
@@ -1175,9 +1239,19 @@ function step(dt) {
       }
     }
   }
+  for (const b of bl) if (b.t == "s") {
+    const s = stairH(b, P.x, P.z);
+    if (s != null && P.y < s - 0.75) {
+      const ev = b.o % 2 == 0, hx = (ev ? 0.9 : 2) + 0.4, hz = (ev ? 2 : 0.9) + 0.4, dx = P.x - b.x, dz = P.z - b.z, px = hx - Math.abs(dx), pz = hz - Math.abs(dz);
+      if (px > 0 && pz > 0) {
+        if (px < pz) P.x += (dx >= 0 ? 1 : -1) * px;
+        else P.z += (dz >= 0 ? 1 : -1) * pz;
+      }
+    }
+  }
   vy -= 18 * dt;
   P.y += vy * dt;
-  const g = gh(P.x, P.z);
+  const g = gh(P.x, P.z, P.y);
   if (P.y <= g) {
     if (vy < -13) hurt((-vy - 13) * 6 * ST.df);
     P.y = g;
@@ -1298,7 +1372,9 @@ function world(dt) {
     const p = plan(), wl = sel == "wall" || sel == "swall" || sel == "mwall" || sel == "doorframe" || sel == "door";
     gh0.visible = true;
     gh0.geometry = GG[GK[sel] || sel];
-    gh0.rotation.y = wl ? p.o ? Math.PI / 2 : 0 : ["chest", "bed", "furnace"].includes(sel) ? p.o : 0;
+    gh0.rotation.order = "YXZ";
+    gh0.rotation.x = sel == "stairs" ? -0.68 : 0;
+    gh0.rotation.y = sel == "stairs" ? Math.atan2(DIRS[p.o][0], DIRS[p.o][1]) : wl ? p.o ? Math.PI / 2 : 0 : ["chest", "bed", "furnace"].includes(sel) ? p.o : 0;
     gh0.position.set(p.x, p.y + ((_a = GY[sel]) != null ? _a : 1.5), p.z);
     gh0.material.color.setHex(valid(p) ? 4521830 : 16729156);
   } else gh0.visible = false;
@@ -1459,7 +1535,7 @@ function vmU(dt) {
   swing = Math.max(0, swing - dt * (sel == "hatchet" || sel == "pickaxe" || sel == "rock" ? 3 : 4));
   rl2 = Math.max(0, rl2 - dt);
   const m = Math.min(1, mv), t = performance.now(), bb = Math.sin(bobT * 0.5) * 0.012 * m, bv = Math.abs(Math.sin(bobT)) * 0.012 * m, br = Math.sin(t * 2e-3) * 4e-3, ts = 1 - swing, E = (x) => x * x * (3 - 2 * x), Lp = (a, b, k) => a.clone().lerp(b, k);
-  const tV = Math.tan(C.fov * Math.PI / 360), g = (nx, ny, z) => new V3(nx * tV * C.aspect * -z, ny * tV * -z, z), B = g(0.5, -0.5, -0.5), Lh = g(-0.55, -0.72, -0.45), bow = sel == "bow", spr = sel == "spear", mel = !bow && !spr && !PL[sel];
+  const tV = Math.tan(C.fov * Math.PI / 360), g = (nx, ny, z) => new V3(nx * tV * C.aspect * -z, ny * tV * -z, z), B = g(0.5, -0.5, -0.5), Lh = g(-0.55, -0.72, -0.45), bow = sel == "bow", spr = sel == "spear", mel = !bow && !spr && !PL[sel] && !GUN[sel];
   B.x += bb;
   B.y += bv + br;
   Lh.x -= bb;
@@ -1473,6 +1549,15 @@ function vmU(dt) {
     const bk = g(0.55, 0.05, -0.3), th = g(0.15, -0.3, -0.85);
     R2 = act ? Lp(B, bk, E(Math.min(1, actT / 0.3))) : swing > 0 ? Lp(th, B, E(ts)) : B;
     rx = act ? 0.35 * Math.min(1, actT / 0.3) : swing > 0 ? 0.1 : 0;
+  } else if (GUN[sel]) {
+    const a = ads ? 1 : 0;
+    adsT += (a - adsT) * Math.min(1, dt * 10);
+    R2 = Lp(g(0.42, -0.55, -0.5), g(0.04, -0.34, -0.48), adsT);
+    Lh.copy(Lp(g(-0.12, -0.62, -0.74), g(-0.04, -0.42, -0.72), adsT));
+    R2.z += swing * 0.07;
+    R2.y += swing * 0.015;
+    rx = -swing * 0.06 - (gd.rl > 0 ? 0.5 : 0);
+    if (gd.rl > 0) R2.y -= 0.12;
   } else if (mel && swing > 0) {
     const up = g(0.35, 0.1, -0.42), st = g(0.1, -0.8, -0.7);
     R2 = ts < 0.4 ? Lp(B, up, E(ts / 0.4)) : ts < 0.65 ? Lp(up, st, E((ts - 0.4) / 0.25)) : Lp(st, B, E((ts - 0.65) / 0.35));
@@ -1483,6 +1568,10 @@ function vmU(dt) {
   ik(vm[0], vS[0], R2, new V3(0.6, -1, 0.2));
   ik(vm[1], vS[1], Lh, new V3(-0.6, -1, 0.2));
   held.position.copy(bow ? Lh : R2);
+  {
+    const mf = held.getObjectByName("mf");
+    if (mf) mf.visible = swing > 0.75;
+  }
   held.rotation.set(bow ? 0 : rx, 0, 0);
   held.visible = !tp && !(spr && rl2 > 0);
   for (const a of vm) a.u.visible = a.f.visible = a.hh.visible = !tp;
@@ -1553,9 +1642,10 @@ GG.bed = new T.BoxGeometry(1, 0.5, 2);
 GG.furnace = new T.BoxGeometry(0.9, 1.1, 0.9);
 GG.door = new T.BoxGeometry(1.15, 2.15, 0.08);
 GG.roof = new T.BoxGeometry(4, 0.25, 4);
-const GK = { swall: "wall", mwall: "wall", doorframe: "wall" }, GY = { foundation: -0.75, campfire: 0.4, chest: 0.35, bed: 0.25, furnace: 0.55, roof: 0.1, door: 1.1, wall: 1.5, mwall: 1.5, swall: 1.5, doorframe: 1.5 };
+const GK = { swall: "wall", mwall: "wall", doorframe: "wall", sfound: "foundation", ceil: "roof" }, GY = { foundation: -0.75, campfire: 0.4, chest: 0.35, bed: 0.25, furnace: 0.55, roof: 0.1, door: 1.1, wall: 1.5, mwall: 1.5, swall: 1.5, doorframe: 1.5, sfound: -0.75, ceil: 0.1, stairs: 1.6 };
 Object.assign(IC, { swall: "\u{1FAA8}", ore: "\u{1F7E4}", chest: "\u{1F9F0}", bed: "\u{1F6CF}\uFE0F", furnace: "\u{1F3ED}", doorframe: "\u{1F6AA}", door: "\u{1F6AA}", roof: "\u{1F3E0}", mhatchet: "\u{1FA93}", mpick: "\u26CF\uFE0F", helmet: "\u26D1\uFE0F", bandage: "\u{1FA79}" });
-Object.assign(NM2, { ore: "\u0420\u0443\u0434\u0430", helmet: "\u0428\u043B\u0435\u043C", bandage: "\u0411\u0438\u043D\u0442" });
+Object.assign(IC, { sulfur: "\u{1F7E1}", bullet: "\u{1F538}", mag: "\u25AE", scope: "\u{1F52D}", rifle: "\u{1F52B}", pistol: "\u{1F52B}", sfound: "\u{1FAA8}", ceil: "\u2B1C", stairs: "\u{1FA9C}" });
+Object.assign(NM2, { sulfur: "\u0421\u0435\u0440\u0430", bullet: "\u041F\u0430\u0442\u0440\u043E\u043D\u044B", mag: "\u041C\u0430\u0433\u0430\u0437\u0438\u043D", scope: "\u041F\u0440\u0438\u0446\u0435\u043B", ore: "\u0420\u0443\u0434\u0430", helmet: "\u0428\u043B\u0435\u043C", bandage: "\u0411\u0438\u043D\u0442" });
 const FLT = (() => {
   const c = document.createElement("canvas");
   c.width = 64;
@@ -1706,6 +1796,26 @@ function useIt() {
   }
 }
 function worldU(dt, now) {
+  WU.value = now * 1e-3;
+  {
+    const zf = ads && (GUN[sel] || sel == "bow") ? GUN[sel] && gd.scope ? 3 : 1.6 : 1, tf = bfov / zf;
+    if (Math.abs(C.fov - tf) > 0.05) {
+      C.fov += (tf - C.fov) * Math.min(1, dt * 10);
+      C.updateProjectionMatrix();
+    }
+  }
+  if (gd.rl > 0) {
+    gd.rl -= dt;
+    if (gd.rl <= 0) {
+      const c = gd.n || 0;
+      gd.ammo += c;
+      inv.bullet -= c;
+      gd.n = 0;
+      msg("\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0436\u0435\u043D\u043E: " + gd.ammo);
+      ui();
+    }
+  }
+  if (holdF && sel == "rifle" && playing && !dead) fireGun(now);
   for (const b of bl) {
     if (b.door) b.door.g.rotation.y += ((b.door.open ? -1.6 : 0) - b.door.g.rotation.y) * Math.min(1, dt * 6);
     if (b.k == "furnace") {
@@ -1751,6 +1861,9 @@ function worldU(dt, now) {
   const ni = nearI();
   $("us").textContent = ni ? ni.n : "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435";
   $("us").style.opacity = ni ? 1 : 0.55;
+  $("cx").style.background = ni ? "#7f7" : "#fff";
+  $("cx").style.transform = ni ? "scale(1.8)" : "";
+  $("am").textContent = GUN[sel] ? gd.mag ? gd.rl > 0 ? "\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430..." : gd.ammo + " / " + CAP[sel] + "   \u0432 \u0440\u044E\u043A\u0437\u0430\u043A\u0435: " + inv.bullet : "\u041D\u0435\u0442 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430" : "";
 }
 $("us").onclick = useIt;
 man.scale.setScalar(0.88);
@@ -1829,6 +1942,7 @@ function solid(x, z, m, f) {
         if (Math.abs(x - cx) < (b.o ? 0.15 : hl) + m && Math.abs(z - cz2) < (b.o ? hl : 0.15) + m) return true;
       }
     } else if (f && b.t == "f" && Math.abs(x - b.x) < 2 + m && Math.abs(z - b.z) < 2 + m) return true;
+    else if (b.t == "s" && Math.abs(x - b.x) < (b.o % 2 ? 2 : 0.9) + m && Math.abs(z - b.z) < (b.o % 2 ? 0.9 : 2) + m) return true;
   }
   return false;
 }
@@ -1848,7 +1962,9 @@ function valid(p) {
     return !ex || ex.t == "w" && (sel == "doorframe" || RK[sel] && RK[ex.kd] < RK[sel]);
   }
   if (sel == "foundation") return !bl.some((b) => b.t == "f" && b.x == p.x && b.z == p.z);
-  if (sel == "roof") return !bl.some((b) => b.t == "r" && b.x == p.x && b.z == p.z);
+  if (sel == "roof" || sel == "ceil") return !bl.some((b) => b.t == "r" && b.x == p.x && b.z == p.z);
+  if (sel == "stairs") return !bl.some((b) => b.t == "s" && b.x == p.x && b.z == p.z);
+  if (sel == "sfound") return !bl.some((b) => b.t == "f" && b.x == p.x && b.z == p.z);
   const d = sel == "bed" ? [0, 0.95, -0.95] : [0];
   return !wallBetween(P.x, P.z, p.x, p.z) && d.every((k) => !solid(p.x + Math.sin(p.o) * k, p.z + Math.cos(p.o) * k, 0.4, false));
 }
@@ -1856,7 +1972,7 @@ function demolish() {
   const e = eye(), f = fw();
   let best = null, bt = 5.5;
   for (const b of bl) {
-    const wl = b.t == "w" || b.t == "d", cy = wl ? b.y0 + 1.5 : b.m.position.y + 0.3, r = wl ? 2.1 : b.t == "f" || b.t == "r" ? 2.3 : 0.9, vx = b.x - e.x, vy2 = cy - e.y, vz = b.z - e.z, t = vx * f.x + vy2 * f.y + vz * f.z;
+    const wl = b.t == "w" || b.t == "d", cy = wl ? b.y0 + 1.5 : b.m.position.y + 0.3, r = wl ? 2.1 : b.t == "f" || b.t == "r" ? 2.3 : b.t == "s" ? 2 : 0.9, vx = b.x - e.x, vy2 = cy - e.y, vz = b.z - e.z, t = vx * f.x + vy2 * f.y + vz * f.z;
     if (t < 0 || t > bt) continue;
     if (vx * vx + vy2 * vy2 + vz * vz - t * t < r * r) {
       bt = t;
@@ -1911,6 +2027,15 @@ $("res").onclick = (e) => {
     ui();
     return;
   }
+  if (k == "mag" || k == "scope") {
+    if (!inv.rifle && !inv.pistol) return msg("\u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u0441\u043E\u0437\u0434\u0430\u0439\u0442\u0435 \u043E\u0440\u0443\u0436\u0438\u0435");
+    if (gd[k]) return msg("\u0423\u0436\u0435 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u043E");
+    inv[k]--;
+    gd[k] = 1;
+    msg((k == "mag" ? "\u041C\u0430\u0433\u0430\u0437\u0438\u043D" : "\u041F\u0440\u0438\u0446\u0435\u043B") + " \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D");
+    ui();
+    return;
+  }
   if (k == "meat" || k == "cooked") eat();
   else if (k == "bandage") {
     inv.bandage--;
@@ -1942,6 +2067,183 @@ $("mk").onclick = () => {
   ui();
 };
 $("dm").onclick = demolish;
+const DIRS = [[0, 1], [1, 0], [0, -1], [-1, 0]], WU = { value: 0 }, GUN = { rifle: 1, pistol: 1 }, CAP = { rifle: 30, pistol: 12 }, gd = { mag: 0, scope: 0, ammo: 0, rl: 0, n: 0 };
+let adsT = 0;
+function sdir() {
+  const fx = -Math.sin(yaw), fz = -Math.cos(yaw);
+  let bi = 0, bd = -9;
+  DIRS.forEach((d, i) => {
+    const v = d[0] * fx + d[1] * fz;
+    if (v > bd) {
+      bd = v;
+      bi = i;
+    }
+  });
+  return bi;
+}
+function stairH(b, x, z) {
+  const d = DIRS[b.o], dx = x - b.x, dz = z - b.z, t = (dx * d[0] + dz * d[1]) / 4 + 0.5;
+  return t >= 0 && t <= 1 && Math.abs(dx * d[1] - dz * d[0]) < 1.1 ? b.base + 3.22 * (Math.floor(Math.min(t, 0.9999) * 12) + 1) / 12 : null;
+}
+function gh(x, z, py) {
+  let y = gnd0(x, z);
+  if (py != null) for (const b of bl) {
+    if (b.t == "r") {
+      if (Math.abs(x - b.x) <= 2.01 && Math.abs(z - b.z) <= 2.01 && py >= b.py + 0.22 - 0.75) y = Math.max(y, b.py + 0.22);
+    } else if (b.t == "s") {
+      const s = stairH(b, x, z);
+      if (s != null && py >= s - 0.75) y = Math.max(y, s);
+    }
+  }
+  return y;
+}
+function shoot(dm, sp) {
+  const f = fw(), e = eye(), m = new T.Mesh(bx, new T.MeshBasicMaterial({ color: 16771488 })), d = f.clone(), k = 1 + mv * 2;
+  m.scale.set(0.02, 0.02, 0.5);
+  d.x += (Math.random() - 0.5) * sp * k;
+  d.y += (Math.random() - 0.5) * sp * k;
+  d.z += (Math.random() - 0.5) * sp * k;
+  d.normalize();
+  m.position.copy(e).addScaledVector(d, 0.8);
+  m.quaternion.setFromUnitVectors(Z0, d);
+  S.add(m);
+  prj.push({ m, k: "gun", dm, v: d.multiplyScalar(220), g: 4.9, t: 0, st: 0 });
+}
+function fireGun(now) {
+  if (dead || now < cd || gd.rl > 0) return;
+  if (!gd.mag) return msg("\u041D\u0435\u0442 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430 (\u0418\u043D\u0432\u0435\u043D\u0442\u0430\u0440\u044C \u2192 \u041C\u0430\u0433\u0430\u0437\u0438\u043D)");
+  if (gd.ammo <= 0) return msg("\u041C\u0430\u0433\u0430\u0437\u0438\u043D \u043F\u0443\u0441\u0442 \u2014 \xAB\u041F\u0435\u0440\u0435\u0437\u0430\u0440.\xBB");
+  gd.ammo--;
+  cd = now + (sel == "rifle" ? 110 : 260);
+  swing = 1;
+  snd(180, 0.2, 1);
+  snd(1800, 0.08, 0.5, "highpass");
+  emit(P.x, P.y + 1.5, P.z, 3, [1, 0.8, 0.3], 1, 0.5, 0.2, 0);
+  shoot(sel == "rifle" ? 32 : 24, ads ? 4e-3 : 0.02);
+}
+function prjU(dt) {
+  for (let i = prj.length; i--; ) {
+    const p = prj[i], q = p.m.position;
+    if (p.st) {
+      p.t -= dt;
+      if (p.k != "gun" && playing && !dead && Math.hypot(q.x - P.x, q.z - P.z) < 1.6) {
+        if (p.k == "spear") inv.spear++;
+        else if (Math.random() < 0.6) inv.arrow++;
+        else msg("\u0421\u0442\u0440\u0435\u043B\u0430 \u0441\u043B\u043E\u043C\u0430\u043B\u0430\u0441\u044C");
+        S.remove(p.m);
+        prj.splice(i, 1);
+        ui();
+        continue;
+      }
+      if (p.t <= 0) {
+        S.remove(p.m);
+        prj.splice(i, 1);
+      }
+      continue;
+    }
+    const n = Math.max(1, Math.ceil(p.v.length() * dt / 0.6)), h2 = dt / n;
+    let done = false;
+    for (let s = 0; s < n && !done; s++) {
+      q.addScaledVector(p.v, h2);
+      p.v.y -= (p.g || 9.8) * h2;
+      let ha = null;
+      for (const a of an) {
+        const c = a.m.position;
+        if (Math.hypot(q.x - c.x, q.z - c.z) < 0.8 * a.m.scale.x && q.y > c.y && q.y < c.y + 1.5) {
+          ha = a;
+          break;
+        }
+      }
+      if (ha) {
+        const head = q.y > ha.m.position.y + 1.15;
+        hitA(ha, (p.dm || (p.k == "bow" ? 45 : 60)) * (head ? 2 : 1) * Math.min(1, p.v.length() / 25));
+        if (head) msg("\u041F\u043E\u043F\u0430\u0434\u0430\u043D\u0438\u0435 \u0432 \u0433\u043E\u043B\u043E\u0432\u0443!");
+        p.st = 1;
+        p.t = p.k == "gun" ? 0.05 : 40;
+        p.v.set(0, 0, 0);
+        done = true;
+        break;
+      }
+      if (solid(q.x, q.z, 0, false) && q.y < gnd0(q.x, q.z) + 3.2) {
+        p.st = 1;
+        p.t = p.k == "gun" ? 0.05 : 40;
+        p.v.set(0, 0, 0);
+        done = true;
+        break;
+      }
+      if (q.y < gnd0(q.x, q.z) + 0.05) {
+        q.y = gnd0(q.x, q.z) + 0.05;
+        p.st = 1;
+        p.t = p.k == "gun" ? 0.05 : 40;
+        done = true;
+        break;
+      }
+    }
+    if (!done) {
+      p.m.quaternion.setFromUnitVectors(Z0, p.v.clone().normalize());
+      if (q.distanceTo(P) > 200) {
+        S.remove(p.m);
+        prj.splice(i, 1);
+      }
+    }
+  }
+}
+function nearI() {
+  const e = eye(), f = fw();
+  let best = null, bt = 3.6;
+  for (const b of bl) {
+    if (!(b.t == "x" || b.t == "c" || b.t == "d" && b.door)) continue;
+    const cy = b.t == "d" ? b.y0 + 1.1 : b.m.position.y + (b.k == "furnace" ? 0.55 : 0.35), r = b.t == "d" ? 0.9 : b.k == "bed" ? 1.1 : 0.7, vx = b.x - e.x, vy2 = cy - e.y, vz = b.z - e.z, t = vx * f.x + vy2 * f.y + vz * f.z;
+    if (t < 0 || t > bt) continue;
+    if (vx * vx + vy2 * vy2 + vz * vz - t * t < r * r) {
+      bt = t;
+      best = { b, n: b.t == "d" ? "\u0414\u0432\u0435\u0440\u044C" : b.k == "chest" ? "\u0421\u0443\u043D\u0434\u0443\u043A" : b.k == "bed" ? "\u041A\u0440\u043E\u0432\u0430\u0442\u044C" : b.k == "furnace" ? "\u041F\u0435\u0447\u044C" : "\u041A\u043E\u0441\u0442\u0451\u0440" };
+    }
+  }
+  return best;
+}
+function wind(m, inst) {
+  m.customProgramCacheKey = () => inst ? "wi" : "wn";
+  m.onBeforeCompile = (s) => {
+    s.uniforms.uT = WU;
+    s.vertexShader = "uniform float uT;\n" + s.vertexShader.replace("#include <begin_vertex>", "#include <begin_vertex>\n" + (inst ? "vec3 ip=vec3(instanceMatrix[3].x,0.,instanceMatrix[3].z);transformed.x+=sin(uT*2.+ip.x*.5+ip.z*.3)*.14*position.y;transformed.z+=cos(uT*1.7+ip.x*.3-ip.z*.4)*.09*position.y;" : "vec3 wp0=(modelMatrix*vec4(0.,0.,0.,1.)).xyz;float ph=wp0.x*.3+wp0.z*.2;transformed.x+=sin(uT*1.3+ph+position.y*.6+position.z*.5)*.07*(.3+position.y*.12);transformed.z+=cos(uT*1.1+ph*1.3+position.x*.4)*.05*(.3+position.y*.12);"));
+  };
+  m.needsUpdate = true;
+}
+lms.forEach((m) => wind(m, 0));
+wind(gI.material, 1);
+GG.stairs = new T.BoxGeometry(1.8, 0.2, 4);
+GG.sfound = GG.foundation;
+GG.ceil = GG.roof;
+{
+  const GT2 = TX(256, (u, v) => {
+    const n = fb(u * 5, v * 5, 5, 5), m = fb(u * 3 + 9, v * 3, 3, 3), bl2 = fb(u * 110, v * 34, 2, 110, 34), f = fb(u * 52, v * 52, 3, 52), dirt = Math.min(1, Math.max(0, (m - 0.5) * 5)), peb = hs(u * 128 | 0, v * 128 | 0) > 0.965 ? 1 : 0, l = (0.42 + n * 0.75 + f * 0.5 + bl2 * 0.35) * (1 - 0.2 * peb) + peb * 0.35;
+    return [255 * l * (1 - 0.2 * dirt) + peb * 40, 255 * l * (1 - 0.38 * dirt) + peb * 40, 255 * l * (1 - 0.58 * dirt) + peb * 40];
+  }, [64, 64]);
+  TMAT.map = TMAT.bumpMap = GT2;
+  TMAT.bumpScale = 1.4;
+  TMAT.needsUpdate = true;
+}
+{
+  const d = new T.Object3D(), pg2 = new T.InstancedMesh(dod, mS, 1600), sg = new T.InstancedMesh(new T.CylinderGeometry(0.012, 0.02, 1, 5).rotateZ(Math.PI / 2), SM(TB, 16777215, 1), 600);
+  for (let i = 0; i < 1600; i++) {
+    const [x, z] = land(), s = L(0.05, 0.2);
+    d.position.set(x, h(x, z) + 0.01, z);
+    d.scale.set(s * L(0.8, 1.6), s * 0.6, s * L(0.8, 1.6));
+    d.rotation.set(L(0, 3), L(0, 6), 0);
+    d.updateMatrix();
+    pg2.setMatrixAt(i, d.matrix);
+  }
+  for (let i = 0; i < 600; i++) {
+    const [x, z] = land(), s = L(0.4, 1.1);
+    d.position.set(x, h(x, z) + 0.03, z);
+    d.scale.set(s, 1, 1);
+    d.rotation.set(0, L(0, 6), L(-0.1, 0.1));
+    d.updateMatrix();
+    sg.setMatrixAt(i, d.matrix);
+  }
+  S.add(pg2, sg);
+}
 function camMode() {
   tp = (tp + 1) % 3;
   $("cm").textContent = ["1 \u043B\u0438\u0446\u043E", "\u0421\u0437\u0430\u0434\u0438", "\u0421\u043F\u0435\u0440\u0435\u0434\u0438"][tp];
@@ -1990,7 +2292,7 @@ function humanAnim(m, sw, t) {
   H.ch.rotation.x = (0.05 + 0.2 * rs) * m + br + sw * 0.15;
   H.ch.rotation.z = -s * 0.03 * m;
   H.nk.rotation.x = -pitch * 0.6 - H.ch.rotation.x * 0.5;
-  const bow = sel == "bow";
+  const bow = sel == "bow" || GUN[sel];
   H.L.sh.rotation.x = bow ? -1.5 : air ? -1.2 : s * Aa;
   H.L.sh.rotation.z = -0.08 - (air ? 0.5 : 0);
   H.L.el.rotation.x = bow ? -0.1 : -(0.15 + 1.2 * rs) * m - 0.1;
@@ -2339,7 +2641,7 @@ R.domElement.addEventListener("webglcontextlost", (e) => {
   e.preventDefault();
   showErr("\u041F\u043E\u0442\u0435\u0440\u044F\u043D \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442 WebGL: \u0441\u043D\u0438\u0437\u044C\u0442\u0435 \u0433\u0440\u0430\u0444\u0438\u043A\u0443 \u0432 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0430\u0445 \u0438 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443");
 });
-const CB = ["hit", "fire", "pl", "dm", "jmp", "cr", "run", "eat", "us", "fl", "mn", "cf", "ps", "cm"];
+const CB = ["hit", "fire", "pl", "dm", "jmp", "cr", "run", "aim", "rld", "eat", "us", "fl", "mn", "cf", "ps", "cm", "gq"];
 CB.forEach((id) => $(id).classList.add("cb"));
 let LAY = {}, editM = 0, dg = null;
 try {
@@ -2347,7 +2649,7 @@ try {
 } catch (e) {
 }
 function layoutDef() {
-  const W = innerWidth, Hh = innerHeight, u = Math.min(Hh * 0.13, 64) * ST.bs / 100, sz = { hit: [u * 1.7, u * 1.7], jmp: [u * 1.2, u * 1.2] }, rows = [["hit", "jmp", "cr", "run"], ["fire", "pl", "dm", "eat", "us", "fl"]];
+  const W = innerWidth, Hh = innerHeight, u = Math.min(Hh * 0.13, 64) * ST.bs / 100, sz = { hit: [u * 1.7, u * 1.7], jmp: [u * 1.2, u * 1.2] }, rows = [["hit", "jmp", "cr", "run", "aim"], ["fire", "pl", "dm", "eat", "us", "fl"], ["rld"]];
   let y = Hh * 0.97;
   for (const r of rows) {
     let x = W * 0.98, rh = 0;
@@ -2452,6 +2754,97 @@ document.addEventListener("click", (e) => {
     e.preventDefault();
   }
 }, true);
+let SCL = {}, selB = null;
+try {
+  SCL = JSON.parse(localStorage.BSC) || {};
+} catch (e) {
+}
+function applyLayout() {
+  layoutDef();
+  const k = ST.bs / 100;
+  [["mn", 116, 48], ["ps", 84, 48], ["cm", 88, 44], ["cf", 84, 48], ["gq", 100, 48]].forEach(([id, w, hh]) => {
+    const b = $(id);
+    b.style.width = w * k + "px";
+    b.style.height = hh * k + "px";
+  });
+  for (const id in LAY) {
+    const b = $(id);
+    if (!b) continue;
+    b.style.left = LAY[id][0] * innerWidth + "px";
+    b.style.top = LAY[id][1] * innerHeight + "px";
+    b.style.right = b.style.bottom = "auto";
+  }
+  for (const id in SCL) {
+    const b = $(id);
+    if (!b) continue;
+    b.style.width = parseFloat(b.style.width || b.offsetWidth) * SCL[id] + "px";
+    b.style.height = parseFloat(b.style.height || b.offsetHeight) * SCL[id] + "px";
+  }
+}
+document.addEventListener("pointerdown", (e) => {
+  if (!editM) return;
+  const b = e.target.closest(".cb");
+  if (b) {
+    selB = b;
+    $("bsz").value = (SCL[b.id] || 1) * 100;
+  }
+}, true);
+$("bsz").oninput = () => {
+  if (selB) {
+    SCL[selB.id] = $("bsz").value / 100;
+    try {
+      localStorage.BSC = JSON.stringify(SCL);
+    } catch (e) {
+    }
+    applyLayout();
+  }
+};
+{
+  const rl0 = $("rl").onclick;
+  $("rl").onclick = () => {
+    rl0();
+    for (const k in SCL) delete SCL[k];
+    try {
+      localStorage.removeItem("BSC");
+    } catch (e) {
+    }
+    applyLayout();
+  };
+}
+$("gq").onclick = () => {
+  ST.q = (ST.q + 1) % 3;
+  $("q").value = ST.q;
+  applyS();
+  const t = ["\u041D\u0438\u0437\u043A\u0430\u044F", "\u0421\u0440\u0435\u0434\u043D\u044F\u044F", "\u0412\u044B\u0441\u043E\u043A\u0430\u044F"][ST.q];
+  $("gq").textContent = "\u0413\u0440\u0430\u0444\u0438\u043A\u0430: " + t.slice(0, 3) + ".";
+  msg("\u0413\u0440\u0430\u0444\u0438\u043A\u0430: " + t);
+};
+$("run").textContent = "\u0411\u0435\u0433: \u0432\u044B\u043A\u043B";
+$("run").onclick = () => {
+  runT ^= 1;
+  $("run").style.background = runT ? "#c4572a" : "";
+  $("run").textContent = runT ? "\u0411\u0435\u0433: \u0412\u041A\u041B" : "\u0411\u0435\u0433: \u0432\u044B\u043A\u043B";
+};
+$("aim").onclick = () => {
+  ads ^= 1;
+  $("aim").style.background = ads ? "#c4572a" : "";
+};
+$("rld").onclick = () => {
+  if (!GUN[sel]) return msg("\u0412\u043E\u0437\u044C\u043C\u0438\u0442\u0435 \u043E\u0440\u0443\u0436\u0438\u0435 \u0432 \u0440\u0443\u043A\u0438");
+  if (!gd.mag) return msg("\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D (\u0418\u043D\u0432\u0435\u043D\u0442\u0430\u0440\u044C \u2192 \u041C\u0430\u0433\u0430\u0437\u0438\u043D)");
+  if (gd.rl > 0) return;
+  const n = Math.min(CAP[sel] - gd.ammo, inv.bullet);
+  if (n <= 0) return msg(inv.bullet ? "\u041C\u0430\u0433\u0430\u0437\u0438\u043D \u043F\u043E\u043B\u043E\u043D" : "\u041D\u0435\u0442 \u043F\u0430\u0442\u0440\u043E\u043D\u043E\u0432");
+  gd.n = n;
+  gd.rl = 1.3;
+  msg("\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430...");
+  snd(700, 0.15, 0.6);
+};
+$("fire").onpointerdown = () => {
+  hit("f");
+  holdF = 1;
+};
+$("fire").onpointerup = $("fire").onpointerleave = () => holdF = 0;
 layReady = 1;
 pitch = 0.12;
 applyS();
