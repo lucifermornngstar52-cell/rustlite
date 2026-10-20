@@ -53,6 +53,9 @@ button{font:inherit;color:var(--p);background:var(--bg);border:1px solid #5a4a3a
 #cf{top:calc(2vh + env(safe-area-inset-top,0px));right:calc(2vw + 216px);width:84px;height:min(10vh,48px);font-size:min(3.4vh,16px);padding:0}
 #gq{top:calc(2vh + env(safe-area-inset-top,0px));right:calc(2vw + 308px);width:100px;height:min(10vh,48px);font-size:min(3vh,14px);padding:0}#bsz,#bszl{display:none;left:50%;transform:translateX(-50%);z-index:30}#bsz{top:52%;width:260px}#bszl{top:46%;font-size:14px;text-shadow:0 1px 3px #000}.ed #bsz,.ed #bszl{display:block}
 #am{left:50%;transform:translateX(-50%);bottom:calc(80px + env(safe-area-inset-bottom,0px));font-size:15px;text-shadow:0 1px 3px #000;pointer-events:none}#cx{transition:transform .1s}
+#dgh{display:none;width:64px;height:64px;margin:-32px 0 0 -32px;align-items:center;justify-content:center;font-size:40px;background:#3a2a1ecc;border:2px solid #f0a070;border-radius:10px;pointer-events:none;z-index:70}
+#trash{display:none;position:fixed;right:16px;bottom:16px;width:130px;height:64px;align-items:center;justify-content:center;border:2px dashed #f66;border-radius:10px;background:#300a;font-size:16px;z-index:40}
+#pn.dragging #trash{display:flex}.hov{outline:3px solid #7f7;background:#2a4a2a!important}#pn .sl,#qk button{touch-action:none}
 #ok{display:none;left:50%;top:40%;transform:translateX(-50%);z-index:30;font-size:20px;padding:12px 22px;background:var(--a)}
 #err{left:12px;bottom:70px;max-width:60vw;font-size:12px;color:#ff8a7a;background:#000a;padding:4px 6px;display:none;pointer-events:none;z-index:60}
 #mm{inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:linear-gradient(#0b0a09aa,#1b120a99);flex-direction:column;gap:10px;overflow:auto;padding:20px;touch-action:pan-y}
@@ -68,7 +71,7 @@ button{font:inherit;color:var(--p);background:var(--bg);border:1px solid #5a4a3a
 #fl{right:20px;bottom:calc(190px + env(safe-area-inset-bottom,0px));width:64px;height:48px}
 </style></head><body>
 <div id="st" class="ab"><div class="br"><i id="b1" style="background:#b83a2e"></i></div><div class="br"><i id="b2" style="background:#d68a2d"></i></div><div class="br"><i id="b3" style="background:#3b8fc4"></i></div><div class="br"><i id="b4" style="background:#8bb86a"></i></div></div>
-<div id="cx" class="ab"></div><div id="rot">Поверните телефон горизонтально</div><div id="clk" class="ab"></div><div id="fps" class="ab"></div><div id="err" class="ab"></div><div id="am" class="ab"></div>
+<div id="cx" class="ab"></div><div id="rot">Поверните телефон горизонтально</div><div id="clk" class="ab"></div><div id="fps" class="ab"></div><div id="err" class="ab"></div><div id="am" class="ab"></div><div id="dgh" class="ab"></div>
 <div id="mm" class="ab"><h1>RUST LITE</h1><p>Одиночное выживание: добывайте ресурсы, стройте базу, охотьтесь и переживите ночь.</p>
 <div id="mb" style="display:contents"><button class="pr" id="play">Играть</button><button id="nw" style="display:none">Новая игра</button><button id="opt">Настройки</button><button id="how">Как играть</button></div>
 <div class="set" id="so">
@@ -88,12 +91,13 @@ button{font:inherit;color:var(--p);background:var(--bg);border:1px solid #5a4a3a
 <label>Яркость<input type="range" id="br" min="70" max="140"></label>
 <label>Размер кнопок<input type="range" id="bs" min="60" max="150"></label>
 <label>Прозрачность кнопок<input type="range" id="bo" min="30" max="100"></label>
+<label>Творческий режим (для тестов)<input type="checkbox" id="ct"></label>
 <button id="ed">Расположить кнопки</button><button id="rl">Сбросить кнопки</button>
 <button id="bk">Назад</button></div>
 <div class="set" id="sh2"><p>Левый стик — ходить, до края — бег (тратит выносливость). Правая часть экрана — обзор. «Удар» бьёт, добывает, стреляет и строит. «Крафт» — рецепты и жарка мяса у костра. «Фонарь» включает свет ночью. Волки опаснее ночью.</p><button id="bk2">Назад</button></div></div><div id="ms" class="ab"></div><div id="vg" class="ab"></div><div id="js" class="ab"></div>
 <div id="hb" class="ab"></div>
 <button id="hit" class="ab">Удар</button><button id="jmp" class="ab">Прыжок</button><button id="eat" class="ab">Еда</button><button id="mn" class="ab">Инвентарь</button><button id="ps" class="ab">Меню</button><button id="fl" class="ab">Фонарь</button><button id="cm" class="ab">Вид</button><button id="us" class="ab">Действие</button><button id="fire" class="ab">Огонь</button><button id="pl" class="ab">Строить</button><button id="run" class="ab">Бег</button><button id="cr" class="ab">Присесть</button><button id="ok" class="ab">Готово</button><button id="cf" class="ab">Крафт</button><button id="dm" class="ab">Ломать</button><button id="aim" class="ab">Прицел</button><button id="rld" class="ab">Перезар.</button><button id="gq" class="ab">Графика</button><span id="bszl" class="ab">Размер выбранной кнопки</span><input type="range" id="bsz" class="ab" min="50" max="250" value="100">
-<div id="pn" class="ab"><h2 id="hI">Инвентарь</h2><div id="res"></div><div id="qk"></div>
+<div id="pn" class="ab"><h2 id="hI">Инвентарь</h2><div id="res"></div><div id="qk"></div><div id="trash">🗑 Бросить</div>
 <div class="row"><button id="cook">Пожарить мясо у костра</button><button id="cl">Закрыть</button></div><div id="cs" style="display:none"><h2>Сундук</h2><div id="cg"></div><div class="row"><button id="cd">Положить ресурсы</button></div></div><h2 id="hC">Крафт</h2><div id="rcw"><div id="rc"></div><div id="rd"></div><button id="mk">Создать</button></div></div>
 <script src="three.min.js"></script>
 <script>addEventListener('error',function(ev){var e=document.getElementById('err');if(e){e.style.display='block';e.textContent='Ошибка: '+ev.message+' (стр. '+ev.lineno+')'}});if(typeof THREE=='undefined'){var e0=document.getElementById('err');e0.style.display='block';e0.textContent='Не загрузилась библиотека three.js — проверьте интернет или блокировщик'}</script>
@@ -125,13 +129,13 @@ const sun = new T.DirectionalLight(16773328, 1), amb = new T.HemisphereLight(125
 S.add(sun, amb);
 addEventListener("resize", () => applyS());
 const WL = -1.4, M = (c) => new T.MeshLambertMaterial({ color: c });
-const ST = { q: 1, fx: 1, sh: 1, gr: 1, vd: 120, fv: 95, br: 100, au: 1, bs: 100, bo: 90, se: 6, vo: 60, dl: 600, nt: 1, df: 1, sf: 0 };
+const ST = { q: 1, fx: 1, sh: 1, gr: 1, vd: 120, fv: 95, br: 100, au: 1, bs: 100, bo: 90, ct: 0, se: 6, vo: 60, dl: 600, nt: 1, df: 1, sf: 0 };
 try {
   Object.assign(ST, JSON.parse(localStorage.ST));
 } catch (e) {
 }
 if (ST.fv < 85) ST.fv = 95;
-let ads = 0, holdF = 0, bfov = 70, cr = 0, crs = 0, runT = 0, resS = 1, fxOff = 0, lowN = 0, layReady = 0, spn = null, curC = null, act = 0, actT = 0, rl2 = 0, isRun = 0, tp = 0, started = 0, lsv = 0, oid = 0, gone = [], wTarget = 0, playing = false, dayL = 1, mv = 0, bobT = 0, lastS = 0, sta = 100, flOn = 0, dmg = 0, fr = 0, ft = 0, AC, NB, gW;
+let creaOn = 0, fly = 0, jH = 0, lastJ = 0, ads = 0, holdF = 0, bfov = 70, cr = 0, crs = 0, runT = 0, resS = 1, fxOff = 0, lowN = 0, layReady = 0, spn = null, curC = null, act = 0, actT = 0, rl2 = 0, isRun = 0, tp = 0, started = 0, lsv = 0, oid = 0, gone = [], wTarget = 0, playing = false, dayL = 1, mv = 0, bobT = 0, lastS = 0, sta = 100, flOn = 0, dmg = 0, fr = 0, ft = 0, AC, NB, gW;
 sun.shadow.camera.left = sun.shadow.camera.bottom = -40;
 sun.shadow.camera.right = sun.shadow.camera.top = 40;
 sun.shadow.camera.far = 300;
@@ -950,6 +954,7 @@ function eat() {
 }
 $("eat").onclick = eat;
 function hurt(n) {
+  if (ST.ct) return;
   hp -= n * (inv.jacket ? 0.7 : 1) * (inv.helmet ? 0.85 : 1);
   dmg = 1;
   snd(160, 0.4, 1);
@@ -1192,7 +1197,7 @@ function step(dt) {
     mx /= l;
     mz /= l;
   }
-  const gy = gh(P.x, P.z, P.y), run = (keys.ShiftLeft || runT) && sta > 3 && l > 0.1 && crs < 0.5, sp = (run ? 7.5 : 5) * (gy < WL ? 0.5 : 1) * (1 - crs * 0.5) * (ads && (GUN[sel] || sel == "bow") ? 0.65 : 1);
+  const gy = gh(P.x, P.z, P.y), run = (keys.ShiftLeft || runT) && sta > 3 && l > 0.1 && crs < 0.5, sp = (run ? 7.5 : 5) * (gy < WL ? 0.5 : 1) * (1 - crs * 0.5) * (ads && (GUN[sel] || sel == "bow") ? 0.65 : 1) * (ST.ct && fly ? 2.5 : 1);
   if (run) sta -= 5 * dt;
   else sta = Math.min(100, sta + 16 * dt);
   mv = l;
@@ -1249,8 +1254,9 @@ function step(dt) {
       }
     }
   }
-  vy -= 18 * dt;
-  P.y += vy * dt;
+  if (ST.ct && fly) vy = 0;
+  vy -= (ST.ct && fly ? 0 : 18) * dt;
+  P.y += vy * dt + (ST.ct && fly ? ((jH ? 1 : 0) - (cr ? 1 : 0)) * 9 * dt : 0);
   const g = gh(P.x, P.z, P.y);
   if (P.y <= g) {
     if (vy < -13) hurt((-vy - 13) * 6 * ST.df);
@@ -1797,6 +1803,8 @@ function useIt() {
 }
 function worldU(dt, now) {
   WU.value = now * 1e-3;
+  if (ST.ct && layReady) crea();
+  else if (!ST.ct) creaOn = 0;
   {
     const zf = ads && (GUN[sel] || sel == "bow") ? GUN[sel] && gd.scope ? 3 : 1.6 : 1, tf = bfov / zf;
     if (Math.abs(C.fov - tf) > 0.05) {
@@ -2845,6 +2853,202 @@ $("fire").onpointerdown = () => {
   holdF = 1;
 };
 $("fire").onpointerup = $("fire").onpointerleave = () => holdF = 0;
+function hitA(a, dm) {
+  a.hp -= dm;
+  a.ag = 1;
+  a.hr = 1;
+  const p = a.m.position;
+  emit(p.x, p.y + 0.9, p.z, 10, [0.55, 0.02, 0.02], 1.5, 1.2, 0.7, 9);
+  if (a.hp <= 0) {
+    const i = an.indexOf(a);
+    if (i >= 0) an.splice(i, 1);
+    a.m.rotation.z = 1.45;
+    a.m.position.y += 0.25;
+    setTimeout(() => S.remove(a.m), 5e3);
+    const n = 3 + (Math.random() * 2 | 0), hd2 = a.w ? 3 : 2;
+    inv.meat += n;
+    inv.hide += hd2;
+    msg("+" + n + " \u043C\u044F\u0441\u0430, +" + hd2 + " \u0448\u043A\u0443\u0440\u044B");
+  } else msg("\u041F\u043E\u043F\u0430\u0434\u0430\u043D\u0438\u0435");
+  ui();
+}
+var CRE = { wood: 999, stone: 999, metal: 999, ore: 999, sulfur: 999, hide: 99, cooked: 99, bandage: 99, bullet: 999, arrow: 99, rock: 1, hatchet: 1, pickaxe: 1, mhatchet: 1, mpick: 1, spear: 5, bow: 1, rifle: 1, pistol: 1, mag: 3, scope: 3, foundation: 99, sfound: 99, wall: 99, swall: 99, mwall: 99, doorframe: 99, door: 99, roof: 99, ceil: 99, stairs: 99, campfire: 9, chest: 9, bed: 9, furnace: 9, jacket: 1, helmet: 1 };
+function crea() {
+  hp = 100;
+  fd = 100;
+  wt = 100;
+  sta = 100;
+  let ch = 0;
+  for (const k in CRE) if ((inv[k] || 0) < CRE[k]) {
+    inv[k] = CRE[k];
+    ch = 1;
+  }
+  gd.mag = 1;
+  gd.scope = 1;
+  gd.ammo = Math.max(gd.ammo, 30);
+  if (!creaOn) {
+    creaOn = 1;
+    msg("\u0422\u0432\u043E\u0440\u0447\u0435\u0441\u043A\u0438\u0439 \u0440\u0435\u0436\u0438\u043C: \u0432\u0441\u0435 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u044B \u0432\u044B\u0434\u0430\u043D\u044B, \u0443\u0440\u043E\u043D \u043E\u0442\u043A\u043B\u044E\u0447\u0451\u043D. \u0414\u0432\u043E\u0439\u043D\u043E\u0439 \u043F\u0440\u044B\u0436\u043E\u043A \u2014 \u043F\u043E\u043B\u0451\u0442");
+  }
+  if (ch) ui();
+}
+{
+  const j0 = $("jmp").onpointerdown;
+  $("jmp").onpointerdown = () => {
+    const n = performance.now();
+    if (ST.ct && n - lastJ < 300) {
+      fly ^= 1;
+      msg(fly ? "\u041F\u043E\u043B\u0451\u0442 \u0432\u043A\u043B\u044E\u0447\u0451\u043D (\u043F\u0440\u044B\u0436\u043E\u043A \u2014 \u0432\u0432\u0435\u0440\u0445, \u043F\u0440\u0438\u0441\u0435\u0441\u0442\u044C \u2014 \u0432\u043D\u0438\u0437)" : "\u041F\u043E\u043B\u0451\u0442 \u0432\u044B\u043A\u043B\u044E\u0447\u0435\u043D");
+    }
+    lastJ = n;
+    jH = 1;
+    if (j0) j0();
+  };
+  $("jmp").onpointerup = $("jmp").onpointerleave = () => jH = 0;
+}
+const slots = Array(40).fill(null);
+function syncSlots() {
+  for (let i = 0; i < 40; i++) if (slots[i] && !(inv[slots[i]] > 0)) slots[i] = null;
+  for (const k in inv) if (inv[k] > 0 && !slots.includes(k)) {
+    const i = slots.indexOf(null);
+    if (i >= 0) slots[i] = k;
+  }
+}
+function resHTML() {
+  syncSlots();
+  return slots.map((k, i) => k ? `<div class="sl${qk.includes(k) ? " on" : ""}" data-k="${k}" data-i="${i}"><b>${IC[k] || "\u{1F4E6}"}</b><span>${N[k] || NM2[k] || k}</span>${inv[k] > 1 || !HK.includes(k) ? "<i>\xD7" + inv[k] + "</i>" : ""}</div>` : `<div class="sl em" data-i="${i}"></div>`).join("");
+}
+function dropAtTarget(d, x, y) {
+  const t = document.elementFromPoint(x, y);
+  if (!t) return;
+  const k = d.key, tr = t.closest("#trash"), qc = t.closest("#qk [data-q]"), ic = t.closest("#res .sl"), cg = t.closest("#cs");
+  if (tr) {
+    if (d.src == "chest") return;
+    const c = inv[k] || 0;
+    if (d.src == "q" && k == "rock") {
+      qk[d.idx] = null;
+      ui();
+      return;
+    }
+    if (c > 0) {
+      inv[k] = 0;
+      dropAt(P.x - Math.sin(yaw) * 2.6, P.z - Math.cos(yaw) * 2.6, { [k]: c });
+      msg("\u0412\u044B\u0431\u0440\u043E\u0448\u0435\u043D\u043E: " + (N[k] || NM2[k] || k) + " \xD7" + c);
+    }
+    ui();
+    return;
+  }
+  if (qc) {
+    const j = +qc.dataset.q;
+    if (d.src == "q") {
+      const a = qk[d.idx];
+      qk[d.idx] = qk[j];
+      qk[j] = a;
+      qs = j;
+      ui();
+      return;
+    }
+    if (d.src == "inv") {
+      if (!HK.includes(k)) return msg("\u042D\u0442\u043E\u0442 \u043F\u0440\u0435\u0434\u043C\u0435\u0442 \u043D\u0435\u043B\u044C\u0437\u044F \u0432\u0437\u044F\u0442\u044C \u0432 \u0440\u0443\u043A\u0438");
+      const o = qk.indexOf(k);
+      if (o >= 0) qk[o] = qk[j];
+      qk[j] = k;
+      qs = j;
+      ui();
+    }
+    return;
+  }
+  if (ic && ic.parentElement && ic.parentElement.id == "res") {
+    const i2 = +ic.dataset.i;
+    if (d.src == "inv") {
+      const a = slots[d.idx];
+      slots[d.idx] = slots[i2];
+      slots[i2] = a;
+      ui();
+      return;
+    }
+    if (d.src == "chest" && curC) {
+      inv[k] = (inv[k] || 0) + curC.inv[k];
+      curC.inv[k] = 0;
+      if (!slots[i2] && !slots.includes(k)) slots[i2] = k;
+      renderChest();
+      ui();
+      return;
+    }
+    if (d.src == "q") {
+      qk[d.idx] = null;
+      ui();
+      return;
+    }
+  }
+  if (cg && pmode == "chest" && curC && d.src == "inv") {
+    if (k == "rock") return;
+    curC.inv[k] = (curC.inv[k] || 0) + inv[k];
+    inv[k] = 0;
+    renderChest();
+    ui();
+  }
+}
+let drag = null, dgMoved = 0;
+$("pn").addEventListener("pointerdown", (e) => {
+  const el = e.target.closest("[data-k],[data-c],#qk [data-q]");
+  if (!el) return;
+  let src, key, idx;
+  if (el.dataset.k != null) {
+    src = "inv";
+    key = el.dataset.k;
+    idx = +el.dataset.i;
+  } else if (el.dataset.c != null) {
+    src = "chest";
+    key = el.dataset.c;
+  } else {
+    src = "q";
+    idx = +el.dataset.q;
+    key = qk[idx];
+  }
+  if (!key) return;
+  drag = { src, key, idx, sx: e.clientX, sy: e.clientY, on: 0, el };
+});
+document.addEventListener("pointermove", (e) => {
+  if (!drag) return;
+  if (!drag.on) {
+    if (Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy) < 10) return;
+    drag.on = 1;
+    dgMoved = 1;
+    const g0 = $("dgh");
+    g0.style.display = "flex";
+    g0.textContent = IC[drag.key] || "\u{1F4E6}";
+    $("pn").classList.add("dragging");
+    drag.el.style.opacity = 0.35;
+  }
+  const g = $("dgh");
+  g.style.left = e.clientX + "px";
+  g.style.top = e.clientY + "px";
+  document.querySelectorAll(".hov").forEach((x) => x.classList.remove("hov"));
+  const t = document.elementFromPoint(e.clientX, e.clientY), h2 = t && t.closest("#res .sl,#qk [data-q],#trash,#cg");
+  if (h2) h2.classList.add("hov");
+});
+const endDrag = (e) => {
+  if (!drag) return;
+  const d = drag;
+  drag = null;
+  if (d.on) {
+    $("dgh").style.display = "none";
+    $("pn").classList.remove("dragging");
+    d.el.style.opacity = "";
+    document.querySelectorAll(".hov").forEach((x) => x.classList.remove("hov"));
+    if (e.type == "pointerup") dropAtTarget(d, e.clientX, e.clientY);
+    setTimeout(() => dgMoved = 0, 60);
+  }
+};
+document.addEventListener("pointerup", endDrag);
+document.addEventListener("pointercancel", endDrag);
+document.addEventListener("click", (e) => {
+  if (dgMoved) {
+    e.stopPropagation();
+    e.preventDefault();
+  }
+}, true);
 layReady = 1;
 pitch = 0.12;
 applyS();

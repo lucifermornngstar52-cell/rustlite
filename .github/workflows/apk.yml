@@ -24,5 +24,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp app/build/outputs/apk/debug/app-debug.apk RustLite.apk
-          gh release create v5 RustLite.apk --title "Rust Lite v5 — размер выбранной кнопки и прочие обновления игры" --notes "Выживание: ресурсы, база, охота, ночь. Собрано из артефекта Claude." || \
-          gh release upload v5 RustLite.apk --clobber
+          gh release create v6 RustLite.apk --title "Rust Lite v6 — творческий режим, кнопка «бросить» в инвентаре" --notes "Выживание: ресурсы, база, охота, ночь. Собрано из артефекта Claude." || \
+          gh release upload v6 RustLite.apk --clobber
