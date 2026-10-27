@@ -24,5 +24,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp app/build/outputs/apk/debug/app-debug.apk RustLite.apk
-          gh release create v7 RustLite.apk --title "Rust Lite v7 — обновление игры" --notes "Новая версия выживания: ресурсы, база, охота, ночь." || \
-          gh release upload v7 RustLite.apk --clobber
+          gh release create v8 RustLite.apk --title "Rust Lite v8 — поддержка в игре" --notes "Пункт Поддержка в меню: Telegram @Unqra" || \
+          gh release upload v8 RustLite.apk --clobber
